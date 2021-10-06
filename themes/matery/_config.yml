@@ -1,5 +1,8 @@
 # main menu navigation url and icon
 # 配置菜单导航的名称、路径和图标icon.
+navigate:
+  url: /navigate
+  icon: fas fa-location-arrow
 menu:
   Index:
     url: /
@@ -23,21 +26,21 @@ menu:
     url: /friends
     icon: fas fa-address-book
   # 二级菜单写法如下
-  #Medias:
-  #  icon: fas fa-list
-  #  children:
-  #    - name: Musics
-  #      url: /musics
-  #      icon: fas fa-music
-  #    - name: Movies
-  #      url: /movies
-  #      icon: fas fa-film
-  #    - name: Books
-  #      url: /books
-  #      icon: fas fa-book
-  #    - name: Galleries
-  #      url: /galleries
-  #      icon: fas fa-image
+  Medias:
+    icon: fas fa-list
+    children:
+      - name: Musics
+        url: /musics
+        icon: fas fa-music
+      - name: Movies
+        url: /movies
+        icon: fas fa-film
+      - name: Books
+        url: /books
+        icon: fas fa-book
+      - name: Galleries
+        url: /galleries
+        icon: fas fa-image
 
 # Website start time.
 # 站点运行开始时间.
@@ -135,8 +138,8 @@ indexbtn:
 socialLink:
   github:  https://github.com/blinkfox
   email: 1181062873@qq.com
-  facebook: # https://www.facebook.com/xxx
-  twitter: # https://twitter.com/xxx
+  facebook: https://www.facebook.com/
+  twitter: https://twitter.com/
   qq: 1181062873
   weibo: # https://weibo.com/xxx
   zhihu: # https://www.zhihu.com/xxx
@@ -318,7 +321,7 @@ livere:
 # To use it, activate the configuration item and set appId and appKey.
 # Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 valine:
-  enable: false
+  enable: true
   appId:
   appKey:
   notify: false
@@ -348,7 +351,7 @@ changyan:
 # Whether to display fork me on github icon and link, default true, You can change it to your repo address
 # 配置是否在 header 中显示 fork me on github 的图标，默认为true，你可以修改为你的仓库地址.
 githubLink:
-  enable: true
+  enable: false
   url: https://github.com/blinkfox/hexo-theme-matery
   title: Fork Me
 
@@ -416,6 +419,8 @@ libs:
     prism: /libs/prism/prism.css
   js:
     matery: /js/matery.js
+    prism: /js/prism.js
+    FunnyTitle: /js/FunnyTitle.js
     jquery: /libs/jquery/jquery.min.js
     materialize: /libs/materialize/materialize.min.js # 1.0.0
     masonry: /libs/masonry/masonry.pkgd.min.js # v4.0.0
@@ -507,7 +512,7 @@ tuxiaochao:
   productId:
 #背景canvas-nest
 canvas_nest:
-  enable: false
+  enable: true
   color: 0,0,255 # 线条颜色, 默认: '0,0,0' ；三个数字分别为(R,G,B)，注意用,分割
   pointColor: 0,0,255 # 交点颜色, 默认: '0,0,0' ；三个数字分别为(R,G,B)，注意用,分割
   opacity: 0.7 # 线条透明度（0~1）, 默认: 0.5
@@ -516,7 +521,7 @@ canvas_nest:
 
 # 背景静止彩带.
 ribbon:
-  enable: false
+  enable: true
   size: 150 # 彩带大小, 默认: 90.
   alpha: 0.6 # 彩带透明度 (0 ~ 1), 默认: 0.6.
   zIndex: -1 # 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1.
@@ -524,7 +529,7 @@ ribbon:
 
 # 背景动态彩带.
 ribbon_dynamic:
-  enable: false
+  enable: true
 
 # sharejs文章分享模块.
 # 支持顺序，可选项目为twitter, facebook, google, qq, qzone, wechat, weibo, douban, linkedin.
@@ -546,9 +551,15 @@ subtitle:
   startDelay: 300 # 开始延迟
   typeSpeed: 100 # 打字速度
   backSpeed: 50 # 删除速度
-  sub:
+  sub1:
     - 从来没有真正的绝境, 只有心灵的迷途
-    - Never really desperate, only the lost of the soul
+    - Never really desperate, only the lost of the soul!
+  sub2: 
+    - 人生态度只有两个字：一个叫赢，一个叫混！
+    - There are only two words in the attitude of life:one is called winning and the other is called mixed!
+  sub3: 
+    - 想赢的人不会混，想混的人不会赢!
+    - Those who want to win will not mix, those who want to mix will not win!
 
 # 手机二级菜单.
 navMenu:
@@ -569,6 +580,15 @@ icp:
   enable: false
   url: # 备案链接
   text: # 备案信息
+# 启用天气接口插件
+weather:
+  enable: true 
+# 页面樱花飘落动效
+sakura:
+  enable: true
+#页面加载动画
+loadingPages:
+  enable: true       
 
 # CDN访问加速 
 # 第一次使用本功能，一定要先配置url，再`hexo cl && hexo g && hexo d`部署到GitHub的仓库，注意！必须是GitHub的仓库！
@@ -580,12 +600,12 @@ icp:
 # 更多关于访问速度优化，请查看：https://blog.sky03.cn/posts/42790.html
 # 注：jsdelivr可以自动帮你生成.min版的js和css，所以你在上面设置js及css路径中可以直接写.min.xxx
 jsDelivr:
-  url: # https://cdn.jsdelivr.net/gh/skyls03/skyls03.github.io
+  url: #https://cdn.jsdelivr.net/gh/wakenhong/wakenhong.github.io
   
 # 网站背景图
 background:
-  enable: false
-  url: "https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/res/site/medias/background.jpg"
+  enable: true
+  url: "https://cdn.jsdelivr.net/gh/wakenhong/wakenhong.github.io/site/medias/background.jpg"
 
 # 说说 https://artitalk.js.org/
 artitalk:

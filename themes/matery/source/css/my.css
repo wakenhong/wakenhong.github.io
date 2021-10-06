@@ -1,1 +1,9 @@
 /* Here is your custom css styles. */
+body { 
+  background-color: #eaeaea; 
+  background: linear-gradient(60deg, rgba(224,255,125, 0.5) 5%, 
+  rgba(0, 228, 255, 0.35)) 0% 0% / cover;
+  background-attachment: fixed;
+  margin: 0; 
+  color: #34495e; 
+}

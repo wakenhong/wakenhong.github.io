@@ -5,8 +5,21 @@
 <% if (theme.background.enable) { %>
    <%- partial('_partial/background') %>
 <% } %>
-
+<% if (theme.loadingPages.enable) { %>
+    <%- partial('_partial/loading-pages') %>
+<% } %>
 <body>
+    <% if (theme.loadingPages.enable) { %>
+        <div id="loading-container"> 
+        <p class="loading-text">嘘~ 正在从服务器偷取页面 . . . </p> 
+        <div class="loading-image">
+         <div></div> 
+         <div></div> 
+         <div></div> 
+         <div></div> 
+         <div></div> 
+         </div> </div> 
+         <% } %>
     <%- partial('_partial/header') %>
     <%- body %>
 
@@ -21,9 +34,11 @@
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.scrollProgress) %>"></script>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.lightgallery) %>"></script>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.matery) %>"></script>
+    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.FunnyTitle) %>"></script>
 
     <%- partial('_partial/baidu-analytics') %>
     <%- partial('_partial/baidu-push') %>
+    <%- partial('_partial/sakura') %>
     <% if (theme.clicklove.enable) { %>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.clicklove) %>" async="async"></script>
     <% } %>
@@ -108,6 +123,8 @@
     <% if (theme.instantpage.enable) { %>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.instantpage) %>" type="module"></script>
     <% } %>
+    <!-- 天气接口控件 洪卫 shw2018 add 2019.09.09 --> 
+    <% if (theme.weather.enable) { %> <%- partial('_widget/weather') %> <% } %>
 
 </body>
 
