@@ -123,8 +123,18 @@
     <% if (theme.instantpage.enable) { %>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.instantpage) %>" type="module"></script>
     <% } %>
-    <!-- 天气接口控件 洪卫 shw2018 add 2019.09.09 --> 
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/fireworks.js"></script>
+    <script src="/js/snow.js"></script>
+    <script src="/js/cursor.js"></script>
+    <!-- 天气接口控件 --> 
     <% if (theme.weather.enable) { %> <%- partial('_widget/weather') %> <% } %>
+    <!-- start webpushr tracking code --> 
+<script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
+    fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
+    webpushr('setup',{'key':'BGJCTTyH0tHqCgX2qvyl8bxaUPLUvbeym9PpWUTqyh0YQOymL542Hr4k1M84vh6p2GKbT9Z-yxsuvEeMntcwQQk', 'integration':'popup'  });</script>
+    <!-- end webpushr tracking code -->
 
 </body>
 

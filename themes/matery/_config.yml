@@ -17,8 +17,15 @@ menu:
     url: /archives
     icon: fas fa-archive
   About:
-    url: /about
-    icon: fas fa-user-circle
+    url: /
+    icon: fas fa-address-card
+    children:
+      - name: 关于我
+        url: /about
+        icon: fas fa-user-circle
+      - name: Another    #这是新添加的，在原有配置基础上添加
+        url: /aboutme
+        icon: fa fa-user-secret  
   Contact:
     url: /contact
     icon: fas fa-comments
@@ -322,8 +329,8 @@ livere:
 # Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 valine:
   enable: true
-  appId:
-  appKey:
+  appId: OOMt2tiFma3QMHGRk78Psfji-gzGzoHsz
+  appKey: PlVEuM5lvBdLM8as0sc3VIyC
   notify: false
   verify: false
   visitor: true
