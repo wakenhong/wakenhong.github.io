@@ -1,0 +1,25 @@
+[
+  {
+    "name": "2021",
+    "cover": "images/p0.png",
+    "description": "我的图床",
+    "photos": [
+      "images/node-1.png",
+      "images/node-2.png",
+      "images/node-3.png",
+      "images/node-4.png",
+      "images/node-5.png",
+      "images/node-6.png",
+      "images/node-7.png",
+      "images/node-8.png",
+      "images/logo.png",
+      "images/logo1.png",
+      "images/node-11.png",
+      "images/node-12.png",
+      "images/01.gif",
+      "images/02.gif",
+      "images/03.gif",
+      "images/04.gif"
+    ]
+  }
+]

@@ -1,22 +1,32 @@
 # main menu navigation url and icon
 # 配置菜单导航的名称、路径和图标icon.
-navigate:
-  url: /navigate
-  icon: fas fa-location-arrow
 menu:
   Index:
     url: /
     icon: fas fa-home
-  Tags:
-    url: /tags
-    icon: fas fa-tags
-  Categories:
+  分类:
     url: /categories
-    icon: fas fa-bookmark
-  Archives:
-    url: /archives
-    icon: fas fa-archive
-  About:
+    icon: fas fa-bookmark   
+  统计:
+    url: /
+    icon: fas fa-sitemap
+    children:
+      - name: 标签
+        url: /tags
+        icon: fas fa-tags     
+      - name: 归档
+        url: /archives
+        icon: fas fa-archive  
+  #Tags:
+  #  url: /tags
+  #  icon: fas fa-tags
+  #Categories:
+  #  url: /categories
+  #  icon: fas fa-bookmark
+  #Archives:
+  #  url: /archives
+  #  icon: fas fa-archive
+  关于:
     url: /
     icon: fas fa-address-card
     children:
@@ -26,28 +36,34 @@ menu:
       - name: Another    #这是新添加的，在原有配置基础上添加
         url: /aboutme
         icon: fa fa-user-secret  
-  Contact:
+  留言板:
     url: /contact
     icon: fas fa-comments
-  Friends:
-    url: /friends
-    icon: fas fa-address-book
+  #友情链接:
+  #  url: /friends
+  #  icon: fas fa-address-book
   # 二级菜单写法如下
-  Medias:
-    icon: fas fa-list
-    children:
-      - name: Musics
-        url: /musics
-        icon: fas fa-music
-      - name: Movies
-        url: /movies
-        icon: fas fa-film
-      - name: Books
-        url: /books
-        icon: fas fa-book
-      - name: Galleries
-        url: /galleries
-        icon: fas fa-image
+  #Medias:
+    #icon: fas fa-list
+    #children:
+    #  - name: Musics
+    #    url: /musics
+    #    icon: fas fa-music
+    #  - name: Movies
+    #    url: /movies
+    #    icon: fas fa-film
+    #  - name: Books
+    #    url: /books
+    #    icon: fas fa-book
+    #  - name: Galleries
+    #    url: /galleries
+    #   icon: fas fa-image
+  相册:
+    url: /galleries 
+    icon: fas fa-image
+  导航:
+    url: /navigate
+    icon: fas fa-location-arrow      
 
 # Website start time.
 # 站点运行开始时间.
