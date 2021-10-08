@@ -6,7 +6,7 @@
   <link href="http://wakenhong.zone/atom.xml" rel="self"/>
   
   <link href="http://wakenhong.zone/"/>
-  <updated>2021-10-06T08:28:17.811Z</updated>
+  <updated>2021-10-08T03:12:42.801Z</updated>
   <id>http://wakenhong.zone/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://wakenhong.zone/2021/10/06/hello-world/"/>
-    <id>http://wakenhong.zone/2021/10/06/hello-world/</id>
-    <published>2021-10-06T08:28:17.811Z</published>
-    <updated>2021-10-06T08:28:17.811Z</updated>
+    <link href="http://wakenhong.zone/posts/3eeb.html"/>
+    <id>http://wakenhong.zone/posts/3eeb.html</id>
+    <published>2021-10-08T03:12:42.801Z</published>
+    <updated>2021-10-08T03:12:42.801Z</updated>
     
     
       
@@ -38,11 +38,24 @@
   </entry>
   
   <entry>
+    <title>test</title>
+    <link href="http://wakenhong.zone/posts/f82e.html"/>
+    <id>http://wakenhong.zone/posts/f82e.html</id>
+    <published>2021-10-06T10:15:28.000Z</published>
+    <updated>2021-10-08T03:12:42.801Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>text travis ci</title>
-    <link href="http://wakenhong.zone/2021/10/06/text-travis-ci/"/>
-    <id>http://wakenhong.zone/2021/10/06/text-travis-ci/</id>
+    <link href="http://wakenhong.zone/posts/1ce2.html"/>
+    <id>http://wakenhong.zone/posts/1ce2.html</id>
     <published>2021-10-06T01:09:21.000Z</published>
-    <updated>2021-10-06T08:28:17.811Z</updated>
+    <updated>2021-10-08T03:12:42.801Z</updated>
     
     
       
@@ -60,10 +73,10 @@
   
   <entry>
     <title>my there blog</title>
-    <link href="http://wakenhong.zone/2021/10/06/my-there-blog/"/>
-    <id>http://wakenhong.zone/2021/10/06/my-there-blog/</id>
+    <link href="http://wakenhong.zone/posts/ef47.html"/>
+    <id>http://wakenhong.zone/posts/ef47.html</id>
     <published>2021-10-06T01:05:53.000Z</published>
-    <updated>2021-10-06T08:28:17.811Z</updated>
+    <updated>2021-10-08T03:12:42.801Z</updated>
     
     
       
@@ -81,10 +94,10 @@
   
   <entry>
     <title>second</title>
-    <link href="http://wakenhong.zone/2021/10/06/second/"/>
-    <id>http://wakenhong.zone/2021/10/06/second/</id>
+    <link href="http://wakenhong.zone/posts/d944.html"/>
+    <id>http://wakenhong.zone/posts/d944.html</id>
     <published>2021-10-05T16:10:09.000Z</published>
-    <updated>2021-10-06T08:28:17.811Z</updated>
+    <updated>2021-10-08T03:12:42.801Z</updated>
     
     
     
@@ -94,10 +107,10 @@
   
   <entry>
     <title>first one</title>
-    <link href="http://wakenhong.zone/2021/10/05/first-one/"/>
-    <id>http://wakenhong.zone/2021/10/05/first-one/</id>
+    <link href="http://wakenhong.zone/posts/797b.html"/>
+    <id>http://wakenhong.zone/posts/797b.html</id>
     <published>2021-10-05T14:54:59.000Z</published>
-    <updated>2021-10-06T08:28:17.811Z</updated>
+    <updated>2021-10-08T03:12:42.801Z</updated>
     
     
     
