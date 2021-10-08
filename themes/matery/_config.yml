@@ -6,26 +6,16 @@ menu:
     icon: fas fa-home
   分类:
     url: /categories
-    icon: fas fa-bookmark   
-  统计:
-    url: /
-    icon: fas fa-sitemap
-    children:
-      - name: 标签
-        url: /tags
-        icon: fas fa-tags     
-      - name: 归档
-        url: /archives
-        icon: fas fa-archive  
-  #Tags:
-  #  url: /tags
-  #  icon: fas fa-tags
-  #Categories:
-  #  url: /categories
-  #  icon: fas fa-bookmark
-  #Archives:
-  #  url: /archives
-  #  icon: fas fa-archive
+    icon: fas fa-bookmark    
+  Tags:
+    url: /tags
+    icon: fas fa-tags
+  Categories:
+    url: /categories
+    icon: fas fa-bookmark
+  Archives:
+    url: /archives
+    icon: fas fa-archive
   关于:
     url: /
     icon: fas fa-address-card
@@ -58,9 +48,9 @@ menu:
     #  - name: Galleries
     #    url: /galleries
     #   icon: fas fa-image
-  相册:
-    url: /galleries 
-    icon: fas fa-image
+  #相册:
+  #  url: /galleries 
+  #  icon: fas fa-image
   导航:
     url: /navigate
     icon: fas fa-location-arrow      
@@ -444,6 +434,9 @@ libs:
     matery: /js/matery.js
     prism: /js/prism.js
     FunnyTitle: /js/FunnyTitle.js
+    cursor: /js/cursor.js
+    fireworks: /js/fireworks.js
+    snow: /js/snow.js
     jquery: /libs/jquery/jquery.min.js
     materialize: /libs/materialize/materialize.min.js # 1.0.0
     masonry: /libs/masonry/masonry.pkgd.min.js # v4.0.0
@@ -628,7 +621,7 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: "https://cdn.jsdelivr.net/gh/wakenhong/wakenhong.github.io/site/medias/background.jpg"
+  url: "https://cdn.jsdelivr.net/gh/wakenhong/cdn@v1.0/source/medias/background.jpg"
 
 # 说说 https://artitalk.js.org/
 artitalk:

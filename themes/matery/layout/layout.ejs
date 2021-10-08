@@ -124,10 +124,10 @@
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.instantpage) %>" type="module"></script>
     <% } %>
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-    <script type="text/javascript" src="/js/fireworks.js"></script>
-    <script src="/js/snow.js"></script>
-    <script src="/js/cursor.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.fireworks) %>"></script>
+    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.snow) %>"></script>
+    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.cursor) %>"></script> 
     <!-- 天气接口控件 --> 
     <% if (theme.weather.enable) { %> <%- partial('_widget/weather') %> <% } %>
     <!-- start webpushr tracking code --> 
