@@ -1,13 +1,13 @@
 ---
 title: Markdown使用
-top: false
+top: true
 cover: false
 toc: true
 mathjax: false
 abbrlink: e4e
 date: 2021-10-08 18:03:54
 author: wakenhong
-img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008214832466.png
+img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/rmarkdown-screenshot.png
 coverImg: https://cdn.jsdelivr.net/gh/wakenhong/cdn/site/blog/medias/featureimages/23.jpg
 password:
 summary: 利用Typro对Markdown一次练习，熟悉以后写一些笔记和记录
@@ -459,8 +459,6 @@ view
 注：脚注自动被搬运到最后面，请到文章末尾查看，并且脚注后方的链接可以直接跳转回到加注的地方
 
 ### 表格
-
-####  表格
 
 语法说明：
 

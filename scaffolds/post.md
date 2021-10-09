@@ -1,16 +1,12 @@
 ---
-title: {{ title }} 
-date: {{ date }} 
+title: {{ title }}
+date: {{ date }}
+categories: 
+tags:
 author: 
 img: 
-coverImg: 
-top: false 
 cover: false 
 toc: true 
-mathjax: false 
-password: 
 summary: 
 keywords: 
-tags: 
-categories: 
 ---

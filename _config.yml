@@ -4,26 +4,21 @@
 
 # Site
 title: wakenhong'blog
-subtitle: '微风抚柳,岁月如风'
-description: '生活随笔,日常学习，资料整理,全栈开发,前端开发,一份耕耘，一份收获，付出就有回报永不遭遇过失败，因我所碰到的都是暂时的挫折'
-keywords: [JavaScript, NodeJS,vue, linux,生活随笔,日常学习,资料整理,前端开发,全栈开发]
-author: wakenhong
+subtitle: 微风抚柳,岁月如风
+keywords: 生活随笔,日常学习,资料整理,全栈开发,前端开发,一份耕耘，一份收获，付出就有回报永不遭遇过失败,因我所碰到的都是暂时的挫折.
+author: 瀟瀟暮雨
+description: [JavaScript,NodeJS,vue,linux,生活随笔,日常学习,资料整理,前端开发,全栈开发]
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
-## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://wakenhong.zone
 root: /
-permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlink
 #permalink: :year/:month/:day/:title/
+permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlink
 permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
-abbrlink:
-    alg: crc16   #算法： crc16(default) and crc32
-    rep: hex     #进制： dec(default) and hex: dec #输出进制：十进制和十六进制，默认为10进制。丨dec为十进制，hex为十六进制
+
 # Directory
 source_dir: source
 public_dir: public
@@ -38,33 +33,25 @@ skip_render: aboutme/**  # 其意思为在对文件进行渲染时跳过aboutme�
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
-  exclude: ''
+external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
-#highlight:
-  #enable: true
-  #line_number: true
+
+highlight:
+  enable: false
+  #line_number: false
   #auto_detect: false
-  #tab_replace: ''
-  #wrap: true
-  #hljs: false
-highlight: false 
+  #tab_replace:
+
+#代码段美化
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'tomorrow'
-  line_number: false    # default false
+  line_number: true    # default false
   custom_css:
-prismjs:
-  enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -72,26 +59,13 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 12
-  pagination_dir: page
+  per_page: 30
   order_by: -date
 
 # Category & Tag
 default_category: uncategorized
 category_map:
-  编程: programming
-  生活: life
-  阅读: reading
-  随想: thoughts
-  理财: finance
 tag_map:
-  敏捷开发: agile-development
-  环境搭建: environment-building
-  前端UI: front-end-ui  
-
-# Metadata elements
-## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
-meta_generator: true
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -99,40 +73,59 @@ meta_generator: true
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
-## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 10
+per_page: 100
 pagination_dir: page
-
-# Include / Exclude file(s)
-## include:/exclude: options only apply to the 'source/' folder
-include:
-exclude:
-ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: matery
-#搜索
+theme: hexo-theme-matery
+#theme: next
+#theme: yilia
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+
+# 部署相关：
+
+# 下面的写法是travis-ci部署到github-pages和腾讯cos
+
+#deploy:
+#  - type: git
+#    branch: master
+#    repo: https://gh_token@github.com/liyang5945/liyang5945.github.io.git
+  #- type: cos
+  #  appId: cos_appId
+  #  secretId: cos_secretId
+  #  secretKey: cos_secretKey
+  #  bucket: cos_bucket
+  #  region: ap-shanghai
+
+
+# 下面的写法是本地部署到github-pages和腾讯cos
+
+deploy:
+- type: git
+  repo: https://github.com/liyang5945/liyang5945.github.io
+#  - type: cos
+#    appId: ******
+#    secretId: ********liyang
+#    secretKey: ********
+#    bucket: liyang-blog-******
+#    region: ap-shanghai
+
+# 搜索
 search:
   path: search.xml
-  field: post
-#中文链接转拼音
-permalink_pinyin:
-  enable: true
-  separator: '-' # default: '-'
-#emoji表情
-githubEmojis:
-  enable: true
-  className: github-emoji
-  inject: true
-  styles:
-  customEmojis:  
-#RSS 订阅支持
+  field: all
+  format: html
+  limit: 10000
+  #field: post, page or all（3个可选参数）
+
+# RSS订阅
 feed:
   type: atom
   path: atom.xml
@@ -141,7 +134,70 @@ feed:
   content:
   content_limit: 140
   content_limit_delim: ' '
-  order_by: -date  
+ # 添加 RSS 订阅支持     
+# Security
+##
+encrypt:
+  enable: true
+
+hexo_external_link:
+  enable: true
+  enable_base64_encode: true
+  url_param_name: 'u'
+  html_file_name: 'go.html'
+  target_blank: true
+  link_rel: 'external nofollow noopener noreferrer'
+  domain: 'your_domain' # 如果开启了防盗链，填写你的域名
+  safety_chain: true
+  
+abbrlink:
+  alg: crc16   #算法： crc16(default) and crc32
+  rep: hex     #进制： dec(default) and hex: dec #输出进制：十进制和十六进制，默认为10进制。丨dec为十进制，hex为十六进制
+  drafts: false   #(true)Process draft,(false)Do not process draft. false(default) 
+  # Generate categories from directory-tree
+  # depth: the max_depth of directory-tree you want to generate, should > 0
+  auto_category:
+     enable: true  #true(default)
+     depth:        #3(default)
+  auto_title: false #enable auto title, it can auto fill the title by path
+  auto_date: false #enable auto date, it can auto fill the date by time today
+  force: false #enable force mode,in this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had abbrlink.
+
+#中文链接转拼音
+permalink_pinyin:
+  enable: true
+  separator: '-' # default: '-'
+#图片懒加载 
+lazyload:
+  enable: true  # 是否开启图片懒加载
+  onlypost: false  # 是否只对文章的图片做懒加载
+  loadingImg: # eg ./images/loading.gif
+
+#hexo-neat 优化提速插件（去掉HTML、css、js的blank字符）
+neat_enable: true
+neat_html:
+  enable: true
+  exclude:
+    - '**/*.md'
+neat_css:
+  enable: true
+  exclude:
+    - '**/*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '**/*.min.js'
+    - '**/**/instantpage.js'
+    - '**/matery.js'
+#發佈訂閱      
+webPushNotification:
+  webpushrKey: "a60db59dc22af80395a8e148fa74c567"
+  webpushrAuthToken: "38351"
+  trackingCode: 
+  - "BGJCTTyH0tHqCgX2qvyl8bxaUPLUvbeym9PpWUTqyh0YQOymL542Hr4k1M84vh6p2GKbT9Z-yxsuvEeMntcwQQk"
  #看板娘 
 live2d:
   enable: true    # 是否启用看板娘
@@ -163,7 +219,7 @@ live2d:
     superSample: 2
     width: 150
     height: 300
-    position: right    # 左侧还是右侧
+    position: left    # 左侧还是右侧
     hOffset: -30
     vOffset: 20    # 距底部距离
   mobile:
@@ -171,45 +227,5 @@ live2d:
     scale: 0.5
   react:
     opacityDefault: 0.7
-    opacityOnHover: 0.2
-#訂閱推送    
-webPushNotification:
-  webpushrKey: "a60db59dc22af80395a8e148fa74c567"
-  webpushrAuthToken: "38351"
-  trackingCode: 
-  - "BGJCTTyH0tHqCgX2qvyl8bxaUPLUvbeym9PpWUTqyh0YQOymL542Hr4k1M84vh6p2GKbT9Z-yxsuvEeMntcwQQk"
-lazyload:
-  enable: true
-  onlypost: false # optional
-  loadingImg: # optional eg ./images/loading.gif
-  isSPA: false # optional
-  preloadRatio: 3 # optional, default is 1
-
-#hexo-neat 优化提速插件（去掉HTML、css、js的blank字符）
-neat_enable: true
-neat_html:
-  enable: true
-  exclude:
-    - '**/*.md'
-neat_css:
-  enable: true
-  exclude:
-    - '**/*.min.css'
-neat_js:
-  enable: true
-  mangle: true
-  output:
-  compress:
-  exclude:
-    - '**/*.min.js'
-    - '**/**/instantpage.js'
-    - '**/matery.js' 
-#博文加密
-encrypt: 
-  enable: true    
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy: 
-  - type: git 
-    #repo: git@github.com:wakenhong/wakenhong.github.io.git
-    branch: gh-pages 
+    opacityOnHover: 0.2     
+   
