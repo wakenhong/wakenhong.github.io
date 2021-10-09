@@ -123,13 +123,9 @@
     <% if (theme.instantpage.enable) { %>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.instantpage) %>" type="module"></script>
     <% } %>
-    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.fireworks) %>"></script>
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.snow) %>"></script>
-    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.cursor) %>"></script> 
+
     <!-- 天气接口控件 --> 
-    <% if (theme.weather.enable) { %> <%- partial('_widget/weather') %> <% } %>
     <!-- start webpushr tracking code --> 
 <script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
     fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
