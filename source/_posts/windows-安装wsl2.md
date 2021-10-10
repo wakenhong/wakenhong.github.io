@@ -324,7 +324,7 @@ sudo service docker restart
 3. 网易： http://hub-mirror.c.163.com
 4. 中科大： https://docker.mirrors.ustc.edu.cn
 
-#### Docker 配置国内镜像源加速](https://www.cnblogs.com/cao-lei/p/14448052.html)
+#### Docker 配置国内镜像源加速(https://www.cnblogs.com/cao-lei/p/14448052.html)
 
 ```yaml
 vi /etc/docker/daemon.json 

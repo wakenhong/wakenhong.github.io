@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: wakenhong'blog
+title: 瀟瀟暮雨
 subtitle: 微风抚柳,岁月如风
 keywords: 生活随笔,日常学习,资料整理,全栈开发,前端开发,一份耕耘，一份收获，付出就有回报永不遭遇过失败,因我所碰到的都是暂时的挫折.
 author: 瀟瀟暮雨
-description: [JavaScript,NodeJS,vue,linux,生活随笔,日常学习,资料整理,前端开发,全栈开发]
+description: [JavaScript,NodeJS,vue,linux,生活随笔,日常学习,资料整理,前端开发]
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
@@ -50,8 +50,13 @@ highlight:
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'tomorrow'
-  line_number: true    # default false
+  line_number: false    # default false
   custom_css:
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

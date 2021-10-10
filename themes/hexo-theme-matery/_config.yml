@@ -33,6 +33,16 @@ menu:
     url: /navigate
     icon: fas fa-location-arrow    
 
+# Website start time.
+# 站点运行开始时间.
+time:
+  enable: false
+  year: 2019 # 年份
+  month: 06 # 月份
+  date: 28 # 日期
+  hour: 00 # 小时
+  minute: 00 # 分钟
+  second: 00 # 秒
 # Index cover carousel configuration.
 # 首页封面轮播图的相关配置.
 cover:
@@ -93,7 +103,7 @@ recommend:
 # Configure website favicon and LOGO
 # 配置网站favicon和网站LOGO
 favicon: /favicon.png
-logo: /medias/star.png
+logo: /medias/logo.png
 
 # The configuration of the second button in the home banner,
 # including the display name of the button, the font awesome icon, and the hyperlink to the button.
@@ -110,7 +120,7 @@ indexbtn:
 socialLink:
   qq: 1723496803
   github: https://github.com/liyang5945
-  email: liyang9211@gmail.com
+  email: wakenhong@gmail.com
   facebook: https://www.facebook.com/
   twitter: https://twitter.com/
   weibo: # https://weibo.com/xxx
@@ -311,7 +321,7 @@ valine:
 # 配置是否在 header 中显示 fork me on github 的图标，默认为true，你可以修改为你的仓库地址.
 githubLink:
   enable: true
-  url: https://github.com/liyang5945/
+  url: https://github.com/waken/
   title: Fork Me
 
 # The password verification feature of read post. To use this feature,
@@ -474,3 +484,9 @@ navMenu:
 # 若为 false, 则 banner 默认为 /medias/banner/0.jpg
 banner:
   enable: true    
+
+#ICP备案信息尾部显示
+icp:
+  enable: false
+  url: # 备案链接
+  text: # 备案信息  
