@@ -19,7 +19,7 @@
 <li>Travis云服务器按顺序执行一系列构建脚本，比如 <code>npm install</code>、<code>hexo g</code> 、<code>hexo d</code>等。</li>
 </ol>
 <h3 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a>如何操作</h3><h4 id="1-配置hexo多端部署"><a href="#1-配置hexo多端部署" class="headerlink" title="1. 配置hexo多端部署"></a>1. 配置hexo多端部署</h4><p>修改博客根目录配置文件<code>_config.yml</code>，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">hexo官方文档-部署</a>，我这里只设置了两个，github-pages和cos，下面的写法是travis-ci部署到github-pages和腾讯cos</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#deploy:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#deploy:</span>
 <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
   <span class="token key atrule">branch</span><span class="token punctuation">:</span> master
   <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//gh_token@github.com/liyang5945/liyang5945.github.io.git
@@ -29,9 +29,9 @@
   <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> cos_secretKey
   <span class="token key atrule">bucket</span><span class="token punctuation">:</span> cos_bucket
   <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果你感觉travis太麻烦，下面的写法是本地部署到github-pages和腾讯cos，注意不要把真实的secretId等值提交到github上面，腾讯云会检测到并打电话提示你有安全风险（不要问我我咋知道的），建议本地部署的时候复制进去，部署完删除即可。</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
     <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/liyang5945/liyang5945.github.io
   <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> cos
@@ -40,12 +40,12 @@
     <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#你的secretKey</span>
     <span class="token key atrule">bucket</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#此项格式为存储桶名称+appId</span>
     <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="2-注册travis账号，配置环境变量"><a href="#2-注册travis账号，配置环境变量" class="headerlink" title="2. 注册travis账号，配置环境变量"></a>2. 注册travis账号，配置环境变量</h4><p>注册travis-ci账号，新建项目等操作参考此贴：<a href="https://www.jianshu.com/p/e22c13d85659">手把手教你使用Travis CI自动部署你的Hexo博客到Github上</a>，这里不再细说。</p>
 <p>接下来要做的就是要把github的token和cos的appId等添加到travis的环境变量里，这样travis云服务器才能帮你部署到github和cos，设置好后如下图所示：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_103156.png"></p>
 <h4 id="3-配置travis执行脚本"><a href="#3-配置travis执行脚本" class="headerlink" title="3. 配置travis执行脚本"></a>3. 配置travis执行脚本</h4><p>最后还需要新建一个travis配置文件<code>.travis.yml</code>，放到博客根目录下，我的配置文件如下：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">language</span><span class="token punctuation">:</span> node_js
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">language</span><span class="token punctuation">:</span> node_js
 
 <span class="token key atrule">node_js</span><span class="token punctuation">:</span> stable  <span class="token comment" spellcheck="true"># 要安装的node版本为当前的稳定版</span>
 
@@ -73,10 +73,10 @@
 <span class="token key atrule">env</span><span class="token punctuation">:</span>
   <span class="token key atrule">global</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">GH_REF</span><span class="token punctuation">:</span> github.com/liyang5945/liyang5945.github.io.git <span class="token comment" spellcheck="true"># 就是你github上存放静态博客最终文件的仓库地址末尾加上.git</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>后面的那几条<code>sed</code>语句的作用就是从我们配置的环境变量里读取真实的cos_appId等参数替换本地（travis云服务器本地）的<code>_config.yml</code>里的形参。<br>替换成真实值之后，再执行<code>hexo -d</code>命令，部署到gh-pages和cos。</p>
 <p>如果你只需要部署到gh-pages，下面的部署命令还可以写出下面这样，你可以手动设置commit信息。</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> cd ./public
   <span class="token punctuation">-</span> git init
   <span class="token punctuation">-</span> git config user.name "your name"
@@ -92,9 +92,9 @@
 <span class="token key atrule">env</span><span class="token punctuation">:</span>
   <span class="token key atrule">global</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">GH_REF</span><span class="token punctuation">:</span> github.com/liyang5945/liyang5945.github.io.git
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>但是这样会有一个问题，那就是commit记录只有一条，如果你在意这个问题，那就使用下面的写法，先拉取到本地再push：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> git clone https<span class="token punctuation">:</span>//$&amp;<span class="token comment" spellcheck="true">#123;GH_REF&amp;#125; .deploy_git  # GH_REF是最下面配置的仓库地址</span>
   <span class="token punctuation">-</span> cd .deploy_git
   <span class="token punctuation">-</span> git checkout master
@@ -106,7 +106,7 @@
   <span class="token punctuation">-</span> git add .
   <span class="token punctuation">-</span> git commit <span class="token punctuation">-</span>m "Travis CI Auto Builder at `date +"%Y<span class="token punctuation">-</span>%m<span class="token punctuation">-</span>%d %H<span class="token punctuation">:</span>%M"`"  <span class="token comment" spellcheck="true"># 提交记录包含时间 跟上面更改时区配合</span>
   <span class="token punctuation">-</span> git push <span class="token punctuation">-</span><span class="token punctuation">-</span>force <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet "https<span class="token punctuation">:</span>//$&amp;<span class="token comment" spellcheck="true">#123;Travis_Token&amp;#125;@$&amp;#123;GH_REF&amp;#125;" master:master  #</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="4-测试是否成功"><a href="#4-测试是否成功" class="headerlink" title="4. 测试是否成功"></a>4. 测试是否成功</h4><p>改动本地文件然后commit，并push到github，不出意外的话可以看到travis云服务器执行命令的过程：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_115731.png"></p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_115632.png"></p>
@@ -185,6 +185,202 @@
       </tags>
   </entry>
   <entry>
+    <title>git 常用命令</title>
+    <url>/posts/d48e.html</url>
+    <content><![CDATA[<h1 id="git-常用命令"><a href="#git-常用命令" class="headerlink" title="git 常用命令"></a>git 常用命令</h1><p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/git-1.png" alt="Basic GIT Commands: A Complete Cheat Sheet for Beginners"></p>
+<h2 id="1-git几个概念名字"><a href="#1-git几个概念名字" class="headerlink" title="1.git几个概念名字"></a>1.git几个概念名字</h2><p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/bg2015120901.png" alt="img"></p>
+<ul>
+<li>Workspace：工作区</li>
+<li>Index / Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
+<h3 id="1-新建代码库"><a href="#1-新建代码库" class="headerlink" title="1.新建代码库"></a>1.新建代码库</h3><blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 在当前目录新建一个Git代码库</span>
+$ <span class="token function">git</span> init
+
+<span class="token comment" spellcheck="true"># 新建一个目录，将其初始化为Git代码库</span>
+$ <span class="token function">git</span> init <span class="token punctuation">[</span>project-name<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 下载一个项目和它的整个代码历史</span>
+$ <span class="token function">git</span> clone <span class="token punctuation">[</span>url<span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h3><p>Git的设置文件为<code>.gitconfig</code>，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
+<blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 显示当前的Git配置</span>
+$ <span class="token function">git</span> config --list
+
+<span class="token comment" spellcheck="true"># 编辑Git配置文件</span>
+$ <span class="token function">git</span> config -e <span class="token punctuation">[</span>--global<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 设置提交代码时的用户信息</span>
+$ <span class="token function">git</span> config <span class="token punctuation">[</span>--global<span class="token punctuation">]</span> user.name <span class="token string">"[name]"</span>
+$ <span class="token function">git</span> config <span class="token punctuation">[</span>--global<span class="token punctuation">]</span> user.email <span class="token string">"[email address]"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="2-命令及说明"><a href="#2-命令及说明" class="headerlink" title="2.命令及说明"></a>2.命令及说明</h2><h3 id="1-远程拉取分支到本地"><a href="#1-远程拉取分支到本地" class="headerlink" title="1.远程拉取分支到本地"></a>1.远程拉取分支到本地</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git checkout <span class="token punctuation">-</span>b 本地分支名 origin/远程分支名
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-查看本地分支"><a href="#2-查看本地分支" class="headerlink" title="2.查看本地分支"></a>2.查看本地分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="3-查看远程分支"><a href="#3-查看远程分支" class="headerlink" title="3.查看远程分支"></a>3.查看远程分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch <span class="token punctuation">-</span>r
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="4-查看所有分支"><a href="#4-查看所有分支" class="headerlink" title="4.查看所有分支"></a>4.查看所有分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch <span class="token punctuation">-</span>a
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="5-新建一个本地分支"><a href="#5-新建一个本地分支" class="headerlink" title="5.新建一个本地分支"></a>5.新建一个本地分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch 本地分支名
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="6-新建一个本地分支并且切换到新分支"><a href="#6-新建一个本地分支并且切换到新分支" class="headerlink" title="6.新建一个本地分支并且切换到新分支"></a>6.新建一个本地分支并且切换到新分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git checkout <span class="token punctuation">-</span>b 本地分支名
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="7-切换分支"><a href="#7-切换分支" class="headerlink" title="7.切换分支"></a>7.切换分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git checkout 分支名
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="8-将本地分支与远程分支关联"><a href="#8-将本地分支与远程分支关联" class="headerlink" title="8.将本地分支与远程分支关联"></a>8.将本地分支与远程分支关联</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch <span class="token punctuation">-</span>u origin/分支名   其中origin/分支名 中分支名 为远程分支名
+<span class="token comment" spellcheck="true">#或使用下面命令</span>
+git branch <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>upstream<span class="token punctuation">-</span>to origin/分支名
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="9-查看本地分支与远程分支的映射关系"><a href="#9-查看本地分支与远程分支的映射关系" class="headerlink" title="9.查看本地分支与远程分支的映射关系"></a>9.查看本地分支与远程分支的映射关系</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch <span class="token punctuation">-</span>vv
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="10-撤销本地分支与远程分支的关联"><a href="#10-撤销本地分支与远程分支的关联" class="headerlink" title="10. 撤销本地分支与远程分支的关联"></a>10. 撤销本地分支与远程分支的关联</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch <span class="token punctuation">-</span><span class="token punctuation">-</span>unset<span class="token punctuation">-</span>upstream
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="11-拉取远程分支"><a href="#11-拉取远程分支" class="headerlink" title="11.拉取远程分支"></a>11.拉取远程分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git fetch origin（不指定分支名就是远程全部分支)
+git fetch origin XXX(拉下远程指定的分支
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="12-删除本地的分支"><a href="#12-删除本地的分支" class="headerlink" title="12.删除本地的分支"></a>12.删除本地的分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch <span class="token punctuation">-</span>d XXX
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="13-删除远程仓库的-分支"><a href="#13-删除远程仓库的-分支" class="headerlink" title="13.删除远程仓库的 分支"></a>13.删除远程仓库的 分支</h3><pre><code>git push origin --delete XXX
+</code></pre>
+<h3 id="14-合并分支"><a href="#14-合并分支" class="headerlink" title="14.合并分支"></a>14.合并分支</h3><p>例如：想将 dev 分支合并到 master 分支，操作如下：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">git  checkout master    //切换到master分支上
+git pull origin master  //把远程分支pull下去，及时更新
+git  merge dev          //把dev分支的代码合并到master上
+git branch <span class="token punctuation">-</span><span class="token punctuation">-</span>merged     //只是为了确认所有内容都已合并，请运行以下命令：
+git status              // 查看状态
+git push origin master  //push到远程分支
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><p>其他命令</p>
+<pre><code>更新远程分支列表
+git remote update origin --prune
+
+查看所有分支
+git branch -a
+
+删除远程分支Chapater6
+git push origin --delete Chapater6
+
+删除本地分支 Chapater6
+git branch -d  Chapater6
+</code></pre>
+</li>
+</ul>
+<h3 id="15-推送本地分支到远程分支"><a href="#15-推送本地分支到远程分支" class="headerlink" title="15.推送本地分支到远程分支"></a>15.推送本地分支到远程分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">//远程先开好分支然后拉到本地
+git checkout <span class="token punctuation">-</span>b feature origin/feature //检出远程的feature分支到本地
+
+//本地先开好分支然后推送到远程
+git checkout <span class="token punctuation">-</span>b feature    //创建并切换到分支feature  
+git push origin feature<span class="token punctuation">:</span>feature  //推送本地的feature(冒号前面的)分支到远程origin的feature(冒号后面的)分支(没有会自动创建)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="16-保存当前工作进度"><a href="#16-保存当前工作进度" class="headerlink" title="16.保存当前工作进度"></a>16.保存当前工作进度</h3><pre class="line-numbers language-yaml"><code class="language-yaml">保存当前工作进度
+git stash
+
+添加一些注释
+git stash save 'message<span class="token punctuation">...</span>'
+
+恢复最新的进度到工作区
+git stash pop
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="17-用于比较两次修改的差异"><a href="#17-用于比较两次修改的差异" class="headerlink" title="17.用于比较两次修改的差异"></a>17.用于比较两次修改的差异</h3><pre class="line-numbers language-yaml"><code class="language-yaml">工作区与暂存区(默认)
+git diff 
+
+Git仓库 vs Git仓库
+git diff &lt;commit<span class="token punctuation">></span> &lt;commit<span class="token punctuation">></span>
+
+暂存区 vs Git仓库
+git diff <span class="token punctuation">-</span><span class="token punctuation">-</span>cached &lt;filename<span class="token punctuation">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="18-git-tag-给当前分支打标签"><a href="#18-git-tag-给当前分支打标签" class="headerlink" title="18. git tag 给当前分支打标签"></a>18. git tag 给当前分支打标签</h3><pre class="line-numbers language-yaml"><code class="language-yaml">列出当前分支所有标签
+git tag
+
+查看标签版本信息
+git show v0.1.2
+
+打标签（轻量标签和附注标签）
+git tag v0.1.2  （标签版本）
+git tag <span class="token punctuation">-</span>a v0.1.2 <span class="token punctuation">-</span>m '0.1.2版本'  (带标注的标签)
+
+<span class="token comment" spellcheck="true"># 补打标签</span>
+git tag <span class="token punctuation">-</span>a v0.1.2 9fbc3d0  （为之前的版本补打标签）    
+
+删除标签
+git tag <span class="token punctuation">-</span>d v0.1.2   删除标签
+
+标签发布（git push 不会将标签对象提交到git服务器）
+git push origin v0.1.2    <span class="token comment" spellcheck="true"># 将v0.1.2标签提交到git服务器</span>
+git push origin –<span class="token punctuation">-</span>tags     <span class="token comment" spellcheck="true"># 将本地所有标签一次性提交到git服务器</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="19-远程分支覆盖本地分支（慎用）"><a href="#19-远程分支覆盖本地分支（慎用）" class="headerlink" title="19.远程分支覆盖本地分支（慎用）"></a>19.远程分支覆盖本地分支（慎用）</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git fetch <span class="token punctuation">-</span><span class="token punctuation">-</span>all  (拉取所有分支)
+git reset <span class="token punctuation">-</span><span class="token punctuation">-</span>hard origin/master (master指定远程的分支)
+git pull
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="20-本地分支覆盖远程分支（慎用）"><a href="#20-本地分支覆盖远程分支（慎用）" class="headerlink" title="20.本地分支覆盖远程分支（慎用）"></a>20.本地分支覆盖远程分支（慎用）</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git push origin 分支名 <span class="token punctuation">-</span><span class="token punctuation">-</span>force       (远程分支名)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="21-git取消对文件夹的追踪"><a href="#21-git取消对文件夹的追踪" class="headerlink" title="21.git取消对文件夹的追踪"></a>21.git取消对文件夹的追踪</h3><ul>
+<li>列出需要取消跟踪的文件</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 需要取消追踪的文件是target目录</span>
+<span class="token function">git</span> <span class="token function">rm</span> -r -n --cached ./mavenparent/maven-admin/target/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>去除缓存不想要跟踪的文件</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">rm</span> -r --cached ./mavenparent/maven-admin/target/
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在本地仓库的根目录下新建.gitignore 文件(若有这个文件那么进行编辑即可)，添加你希望忽略的文件/目录</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 忽略当前目录下mavenparent目录下maven-admin目录下的target目录文件</span>
+/mavenparent/maven-admin/target/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>提交文件 (会出现确认需要提交哪些文件 记得==将需要取消的文件前面的#去掉==)</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> commit
+
+<span class="token comment" spellcheck="true"># 提交的文件 取消deleted前面的 “#”</span>
+deleted:    mavenparent/maven-admin/target/classes/com/leiwu/architecture/maven/admin/AdminBase.class
+deleted:    mavenparent/maven-admin/target/maven-admin.war
+deleted:    mavenparent/maven-admin/target/maven-admin/META-INF/MANIFEST.MF
+
+<span class="token comment" spellcheck="true"># 保存提交的文件</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>将修改的 .ignore文件 commit上去</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> add .gitignore
+<span class="token function">git</span> commit
+
+<span class="token comment" spellcheck="true"># 修改提交的文件 ---- 去除前面的 # 号</span>
+On branch master
+Changes to be committed:
+modified:   .gitignore
+
+<span class="token comment" spellcheck="true"># 保存提交的文件</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用命令查看当前工作区是否有未提交的文件</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> status
+
+<span class="token comment" spellcheck="true"># 修改上面取消追踪的文件 再使用命令查看 此文件是否被git追踪</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>工具类</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello，world！</title>
     <url>/posts/cab2.html</url>
     <content><![CDATA[<p>博客问世，hello world!</p>
@@ -201,47 +397,47 @@
     <url>/posts/f43b.html</url>
     <content><![CDATA[<h1 id="Linux-WSL2-in-Windows-10"><a href="#Linux-WSL2-in-Windows-10" class="headerlink" title="Linux (WSL2)  in Windows 10"></a>Linux (WSL2)  in Windows 10</h1><h2 id="访问子系统文件方法"><a href="#访问子系统文件方法" class="headerlink" title="访问子系统文件方法"></a>访问子系统文件方法</h2><h3 id="在要浏览的Linux环境的Windows子系统中，运行以下命令-explorer-exe"><a href="#在要浏览的Linux环境的Windows子系统中，运行以下命令-explorer-exe" class="headerlink" title="在要浏览的Linux环境的Windows子系统中，运行以下命令 explorer.exe ."></a>在要浏览的Linux环境的Windows子系统中，运行以下命令 <code>explorer.exe .</code></h3><p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008141453850.png" alt="image-20211008141453850"></p>
 <h3 id="在文件资源路径中搜索-wsl"><a href="#在文件资源路径中搜索-wsl" class="headerlink" title="在文件资源路径中搜索  \\wsl$"></a>在文件资源路径中搜索  <code>\\wsl$</code></h3><p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008141323242.png" alt="image-20211008141323242"></p>
-<h2 id="wsl-命令"><a href="#wsl-命令" class="headerlink" title="wsl 命令"></a>wsl 命令</h2><h3 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h3><pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>h
-</code></pre>
-<h3 id="设置默认版本，选择linux默认运行在-wsl1-还是-wsl2"><a href="#设置默认版本，选择linux默认运行在-wsl1-还是-wsl2" class="headerlink" title="设置默认版本，选择linux默认运行在 wsl1 还是 wsl2"></a>设置默认版本，选择linux默认运行在 <strong>wsl1</strong> 还是 <strong>wsl2</strong></h3><pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>default<span class="token punctuation">-</span>version 2
-</code></pre>
-<h3 id="设置-某个linux发行版运行版本-需要先安装好-linux-后才可以转换"><a href="#设置-某个linux发行版运行版本-需要先安装好-linux-后才可以转换" class="headerlink" title="设置 某个linux发行版运行版本,需要先安装好 linux 后才可以转换"></a>设置 某个linux发行版运行版本,需要先安装好 linux 后才可以转换</h3><pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>version &lt;distro<span class="token punctuation">></span> 2   eg<span class="token punctuation">:</span>wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>version ubuntu 1
-</code></pre>
-<h3 id="ubuntu-版本转换"><a href="#ubuntu-版本转换" class="headerlink" title="ubuntu 版本转换"></a>ubuntu 版本转换</h3><pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>version ubuntu 2
-</code></pre>
-<h3 id="查看安装的-linux"><a href="#查看安装的-linux" class="headerlink" title="查看安装的 linux"></a>查看安装的 linux</h3><pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>list <span class="token punctuation">-</span><span class="token punctuation">-</span>verbose 或 wsl <span class="token punctuation">-</span>l <span class="token punctuation">-</span>v
-</code></pre>
-<h3 id="停止所用运行Linux"><a href="#停止所用运行Linux" class="headerlink" title="停止所用运行Linux"></a>停止所用运行Linux</h3><pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>shutdowny
-</code></pre>
+<h2 id="wsl-命令"><a href="#wsl-命令" class="headerlink" title="wsl 命令"></a>wsl 命令</h2><h3 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h3><pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>h
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="设置默认版本，选择linux默认运行在-wsl1-还是-wsl2"><a href="#设置默认版本，选择linux默认运行在-wsl1-还是-wsl2" class="headerlink" title="设置默认版本，选择linux默认运行在 wsl1 还是 wsl2"></a>设置默认版本，选择linux默认运行在 <strong>wsl1</strong> 还是 <strong>wsl2</strong></h3><pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>default<span class="token punctuation">-</span>version 2
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="设置-某个linux发行版运行版本-需要先安装好-linux-后才可以转换"><a href="#设置-某个linux发行版运行版本-需要先安装好-linux-后才可以转换" class="headerlink" title="设置 某个linux发行版运行版本,需要先安装好 linux 后才可以转换"></a>设置 某个linux发行版运行版本,需要先安装好 linux 后才可以转换</h3><pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>version &lt;distro<span class="token punctuation">></span> 2   eg<span class="token punctuation">:</span>wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>version ubuntu 1
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ubuntu-版本转换"><a href="#ubuntu-版本转换" class="headerlink" title="ubuntu 版本转换"></a>ubuntu 版本转换</h3><pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>set<span class="token punctuation">-</span>version ubuntu 2
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="查看安装的-linux"><a href="#查看安装的-linux" class="headerlink" title="查看安装的 linux"></a>查看安装的 linux</h3><pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>list <span class="token punctuation">-</span><span class="token punctuation">-</span>verbose 或 wsl <span class="token punctuation">-</span>l <span class="token punctuation">-</span>v
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="停止所用运行Linux"><a href="#停止所用运行Linux" class="headerlink" title="停止所用运行Linux"></a>停止所用运行Linux</h3><pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>shutdowny
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="修改root用户密码"><a href="#修改root用户密码" class="headerlink" title="修改root用户密码"></a>修改root用户密码</h3><ul>
 <li><p><code>wsl 默认是没有设置root密码的</code></p>
 </li>
 <li><p>设置 root 用户密码，这样要输三次命令，第一次当前用户密码，后两次就是设置密码以及确认密码</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 语法： sudo passwd 用户名 </span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 语法： sudo passwd 用户名 </span>
 sudo passwd root
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p><strong>password updated successfully</strong> 代表密码更新成功 </p>
 </li>
 <li><p> 切换用户</p>
 </li>
 </ul>
-<pre class=" language-yaml"><code class="language-yaml"> <span class="token comment" spellcheck="true"># 语法： su 用户名 </span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"> <span class="token comment" spellcheck="true"># 语法： su 用户名 </span>
 su root
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="修个设置默认用户"><a href="#修个设置默认用户" class="headerlink" title="修个设置默认用户"></a>修个设置默认用户</h3><h4 id="查看自己安装的哪个版本"><a href="#查看自己安装的哪个版本" class="headerlink" title="查看自己安装的哪个版本"></a>查看自己安装的哪个版本<img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008151611822.png" alt="image-20211008151611822"></h4><p><em>查看修改命令</em>，输入<code>ubuntu2004 /? </code>按回车会自动补全版本对应的命令 不要输入<code>ubuntu</code>要不然进入子系统了</p>
 <p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008151717515.png" alt="image-20211008151717515"></p>
-<h4 id="设置默认用户"><a href="#设置默认用户" class="headerlink" title="设置默认用户"></a>设置默认用户</h4><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">语法</span><span class="token punctuation">:</span> ubuntu2004 config <span class="token punctuation">-</span><span class="token punctuation">-</span>default<span class="token punctuation">-</span>user 用户名(已存在)
+<h4 id="设置默认用户"><a href="#设置默认用户" class="headerlink" title="设置默认用户"></a>设置默认用户</h4><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">语法</span><span class="token punctuation">:</span> ubuntu2004 config <span class="token punctuation">-</span><span class="token punctuation">-</span>default<span class="token punctuation">-</span>user 用户名(已存在)
 PS C<span class="token punctuation">:</span>\WINDOWS\system32<span class="token punctuation">></span> ubuntu2004 config <span class="token punctuation">-</span><span class="token punctuation">-</span>default<span class="token punctuation">-</span>user root
 没有报错就代表成功
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>重新打开已经是root用户了<img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008151948185.png" alt="image-20211008151948185"></p>
 <h3 id="启动虚拟机"><a href="#启动虚拟机" class="headerlink" title="启动虚拟机"></a>启动虚拟机</h3><ul>
 <li><p>直接输入 系统名称：如 Ubuntu 、kali等 直接进入</p>
 </li>
 <li><p>或使用 wsl命令，例如</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>d ubuntu
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>d ubuntu
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 <h2 id="安装wsl-分发版"><a href="#安装wsl-分发版" class="headerlink" title="安装wsl 分发版"></a>安装wsl 分发版</h2><h3 id="安装-linux"><a href="#安装-linux" class="headerlink" title="安装 linux"></a>安装 linux</h3><ul>
@@ -252,8 +448,8 @@ PS C<span class="token punctuation">:</span>\WINDOWS\system32<span class="token 
 <li><p>设置用户名密码</p>
 </li>
 <li><p>设置 root密码</p>
-<pre class=" language-yaml"><code class="language-yaml">sudo passwd root
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">sudo passwd root
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 <h3 id="wsl-分发版上安装docker"><a href="#wsl-分发版上安装docker" class="headerlink" title="wsl 分发版上安装docker"></a>wsl 分发版上安装docker</h3><pre><code> sudo apt-get update
@@ -271,28 +467,28 @@ PS C<span class="token punctuation">:</span>\WINDOWS\system32<span class="token 
   sudo apt-get update
   sudo apt-get install docker-ce docker-ce-cli containerd.io
 </code></pre>
-<h3 id="docker相关命令"><a href="#docker相关命令" class="headerlink" title="docker相关命令"></a>docker相关命令</h3><h4 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h4><pre class=" language-yaml"><code class="language-yaml">sudo service docker start
-</code></pre>
-<h4 id="运行容器测试"><a href="#运行容器测试" class="headerlink" title="运行容器测试"></a>运行容器测试</h4><pre class=" language-yaml"><code class="language-yaml">sudo docker run hello<span class="token punctuation">-</span>world
-</code></pre>
-<h4 id="docker-以普通用户执行"><a href="#docker-以普通用户执行" class="headerlink" title="docker 以普通用户执行"></a>docker 以普通用户执行</h4><pre class=" language-yaml"><code class="language-yaml">sudo usermod <span class="token punctuation">-</span>aG docker your<span class="token punctuation">-</span>user
+<h3 id="docker相关命令"><a href="#docker相关命令" class="headerlink" title="docker相关命令"></a>docker相关命令</h3><h4 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h4><pre class="line-numbers language-yaml"><code class="language-yaml">sudo service docker start
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="运行容器测试"><a href="#运行容器测试" class="headerlink" title="运行容器测试"></a>运行容器测试</h4><pre class="line-numbers language-yaml"><code class="language-yaml">sudo docker run hello<span class="token punctuation">-</span>world
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="docker-以普通用户执行"><a href="#docker-以普通用户执行" class="headerlink" title="docker 以普通用户执行"></a>docker 以普通用户执行</h4><pre class="line-numbers language-yaml"><code class="language-yaml">sudo usermod <span class="token punctuation">-</span>aG docker your<span class="token punctuation">-</span>user
 sudo service docker restart
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="windows-网络访问-linux"><a href="#windows-网络访问-linux" class="headerlink" title="windows 网络访问 linux"></a>windows 网络访问 linux</h4><ul>
 <li><p>运行 nginx容器</p>
-<pre class=" language-yaml"><code class="language-yaml">docker run <span class="token punctuation">-</span><span class="token punctuation">-</span>name nginx <span class="token punctuation">-</span>d <span class="token punctuation">-</span>p 8888<span class="token punctuation">:</span>80 nginx   
+<pre class="line-numbers language-yaml"><code class="language-yaml">docker run <span class="token punctuation">-</span><span class="token punctuation">-</span>name nginx <span class="token punctuation">-</span>d <span class="token punctuation">-</span>p 8888<span class="token punctuation">:</span>80 nginx   
 run：表示运行容器  <span class="token punctuation">-</span><span class="token punctuation">-</span>name：指定容器名称 <span class="token punctuation">-</span>d：表示进程在后台运行  <span class="token punctuation">-</span>p：指定映射端口 8888为外部访问端口 ，80位容器内部端口 nginx<span class="token punctuation">:</span>依赖表示镜像名称 可以带参数指定版本号
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p>linux子系统内部访问</p>
-<pre class=" language-yaml"><code class="language-yaml">curl http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span><span class="token number">8888</span>
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">curl http<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span><span class="token number">8888</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>windows访问</p>
 <ol>
 <li><p>查看 linuxIp</p>
-<pre class=" language-yaml"><code class="language-yaml">ip addr
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">ip addr
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>查看 eth0 ip,这里是 <code>192.168.161.203</code> 每个机器的都不一样</p>
 <ul>
@@ -305,51 +501,51 @@ run：表示运行容器  <span class="token punctuation">-</span><span class="t
 </ul>
 <h4 id="ubuntu-重启系统"><a href="#ubuntu-重启系统" class="headerlink" title="ubuntu 重启系统"></a>ubuntu 重启系统</h4><ul>
 <li><p>在Linux 执行 重启或关机命令，会报错，需要执行 <code>wsl</code>命令</p>
-<pre class=" language-yaml"><code class="language-yaml">ziyun@DESKTOP<span class="token punctuation">-</span>JVE2TQQ<span class="token punctuation">:</span>/mnt/c/WINDOWS/system32$ sudo reboot
+<pre class="line-numbers language-yaml"><code class="language-yaml">ziyun@DESKTOP<span class="token punctuation">-</span>JVE2TQQ<span class="token punctuation">:</span>/mnt/c/WINDOWS/system32$ sudo reboot
 System has not been booted with systemd as init system (PID 1). Can't operate.
 Failed to talk to init daemon.
 ziyun@DESKTOP<span class="token punctuation">-</span>JVE2TQQ<span class="token punctuation">:</span>/mnt/c/WINDOWS/system32$ sudo shutdown
 System has not been booted with systemd as init system (PID 1). Can't operate.
 ziyun@DESKTOP<span class="token punctuation">-</span>JVE2TQQ<span class="token punctuation">:</span>/mnt/c/WINDOWS/system32$
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>终止所有运行的linux</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>shutdown
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>shutdown
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>终止指定的linux</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>terminate &lt;distro<span class="token punctuation">></span>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>terminate &lt;distro<span class="token punctuation">></span>
 <span class="token comment" spellcheck="true"># 或 </span>
 wsl <span class="token punctuation">-</span>t &lt;distro<span class="token punctuation">></span>   
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>查看 linux子系统列表</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>l  
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>l  
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>关闭 ubutnu ,关闭没有任何显示</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>t Ubuntu
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span>t Ubuntu
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>启动 ubuntu</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token punctuation">-</span> 执行 `wsl <span class="token punctuation">-</span>d ubuntu`
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token punctuation">-</span> 执行 `wsl <span class="token punctuation">-</span>d ubuntu`
 <span class="token punctuation">-</span> 或者输入 ubuntu
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h4 id="将ubuntu导出-安装的默认C盘目录"><a href="#将ubuntu导出-安装的默认C盘目录" class="headerlink" title="将ubuntu导出 安装的默认C盘目录"></a>将ubuntu导出 安装的默认C盘目录</h4><ul>
 <li><p>导出到d盘dev目录</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>export Ubuntu D<span class="token punctuation">:</span>/dev/ubuntu.tar  这个不能在系统终端上执行 ，需要在主系统上终端执行
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>export Ubuntu D<span class="token punctuation">:</span>/dev/ubuntu.tar  这个不能在系统终端上执行 ，需要在主系统上终端执行
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>导入</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>import Ubuntu D<span class="token punctuation">:</span>/dev/Ubuntu  D<span class="token punctuation">:</span>/dev/ubuntu.tar
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>import Ubuntu D<span class="token punctuation">:</span>/dev/Ubuntu  D<span class="token punctuation">:</span>/dev/ubuntu.tar
 说明
 <span class="token punctuation">-</span> –import <span class="token punctuation">:</span>导入
 <span class="token punctuation">-</span> <span class="token key atrule">ubuntu</span><span class="token punctuation">:</span> 导入名称，可自定义
 <span class="token punctuation">-</span> <span class="token key atrule">D:/dev/Ubuntu</span> <span class="token punctuation">:</span> 导入到那个目录，导入成功，有 ext4.vhdx 文件
 <span class="token punctuation">-</span> D<span class="token punctuation">:</span>/dev/ubuntu.tar： 源文件
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h4 id="win10中WSL-2运行的Docker-Desktop运行文件从C盘迁移到其他目录"><a href="#win10中WSL-2运行的Docker-Desktop运行文件从C盘迁移到其他目录" class="headerlink" title="win10中WSL 2运行的Docker Desktop运行文件从C盘迁移到其他目录"></a>win10中WSL 2运行的Docker Desktop运行文件从C盘迁移到其他目录</h4><blockquote>
@@ -380,14 +576,14 @@ wsl <span class="token punctuation">-</span>t &lt;distro<span class="token punct
 <li><p>将 docker-desktop-data 导出到 <code>D:\SoftwareData\wsl\docker-desktop-data\docker-desktop-data.tar</code>（注意，原有的 docker images 不会一起导出）</p>
 </li>
 </ol>
-<pre class=" language-yaml"><code class="language-yaml">    wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>export docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data D<span class="token punctuation">:</span>\SoftwareData\wsl\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data.tar
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">    wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>export docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data D<span class="token punctuation">:</span>\SoftwareData\wsl\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data.tar
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ol start="4">
 <li><p>注销 docker-desktop-data：<code>wsl --unregister docker-desktop-data</code></p>
 </li>
 <li><p>重新导入 docker-desktop-data 到要存放的文件夹：D:\SoftwareData\wsl\docker-desktop-data\：</p>
-<pre class=" language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>import docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data D<span class="token punctuation">:</span>\SoftwareData\wsl\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data\ D<span class="token punctuation">:</span>\SoftwareData\wsl\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data.tar <span class="token punctuation">-</span><span class="token punctuation">-</span>version 2
-</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml">wsl <span class="token punctuation">-</span><span class="token punctuation">-</span>import docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data D<span class="token punctuation">:</span>\SoftwareData\wsl\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data\ D<span class="token punctuation">:</span>\SoftwareData\wsl\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data\docker<span class="token punctuation">-</span>desktop<span class="token punctuation">-</span>data.tar <span class="token punctuation">-</span><span class="token punctuation">-</span>version 2
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008175644724.png" alt="image-20211008175644724"></p>
 </li>
 </ol>
@@ -405,7 +601,7 @@ wsl <span class="token punctuation">-</span>t &lt;distro<span class="token punct
 <li>网易： <a href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></li>
 <li>中科大： <a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></li>
 </ol>
-<h4 id="Docker-配置国内镜像源加速-https-www-cnblogs-com-cao-lei-p-14448052-html"><a href="#Docker-配置国内镜像源加速-https-www-cnblogs-com-cao-lei-p-14448052-html" class="headerlink" title="Docker 配置国内镜像源加速(https://www.cnblogs.com/cao-lei/p/14448052.html)"></a>Docker 配置国内镜像源加速(<a href="https://www.cnblogs.com/cao-lei/p/14448052.html">https://www.cnblogs.com/cao-lei/p/14448052.html</a>)</h4><pre class=" language-yaml"><code class="language-yaml">vi /etc/docker/daemon.json 
+<h4 id="Docker-配置国内镜像源加速-https-www-cnblogs-com-cao-lei-p-14448052-html"><a href="#Docker-配置国内镜像源加速-https-www-cnblogs-com-cao-lei-p-14448052-html" class="headerlink" title="Docker 配置国内镜像源加速(https://www.cnblogs.com/cao-lei/p/14448052.html)"></a>Docker 配置国内镜像源加速(<a href="https://www.cnblogs.com/cao-lei/p/14448052.html">https://www.cnblogs.com/cao-lei/p/14448052.html</a>)</h4><pre class="line-numbers language-yaml"><code class="language-yaml">vi /etc/docker/daemon.json 
 <span class="token comment" spellcheck="true"># 内容如下： </span>
 &amp;<span class="token comment" spellcheck="true">#123;  </span>
 <span class="token key atrule">"registry-mirrors"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>    
@@ -419,7 +615,7 @@ wsl <span class="token punctuation">-</span>t &lt;distro<span class="token punct
 <span class="token comment" spellcheck="true"># 退出并保存 :wq </span>
 <span class="token comment" spellcheck="true"># 使配置生效   systemctl daemon-reload </span>
 <span class="token comment" spellcheck="true"># 重启         Docker systemctl restart docker</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
 <p><a href="https://cloud.tencent.com/developer/article/1679501?from=article.detail.1594940">https://cloud.tencent.com/developer/article/1679501?from=article.detail.1594940</a></p>
 <p><a href="https://www.hdboy.top/show/35">https://www.hdboy.top/show/35</a></p>
@@ -454,12 +650,12 @@ wsl <span class="token punctuation">-</span>t &lt;distro<span class="token punct
 <p>里面的内容大同小异，不外乎两个hexo的插件：一个是<code>hexo-blog-encrypt</code>，另一个是<code>hexo-encrypt</code>。在我把两个插件都尝试过了之后，发现这两个插件只能加密<code>文章</code>，也就是hexo从md文件里读取到的文章内容。而我们的相册呢，是根据配置文件自动生成的，并没有在md文件里写着，实现不了加密。</p>
 <p>好吧，那我就研究一下这两个插件的原理，看它们是如何实现文章加密的。</p>
 <p>先使用<code>hexo-blog-encrypt</code>插件，给<a href="">hello world</a>这篇文章加密试试：<br>首先启用该插件，在根目录的_config.yml中启用该插件，添加以下代码:</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Security  </span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Security  </span>
   <span class="token key atrule">encrypt</span><span class="token punctuation">:</span> 
   <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>然后设置文章的密码，在文章头部加上<code>password</code>字段,密码为2233:</p>
-<pre class=" language-markdown"><code class="language-markdown">
+<pre class="line-numbers language-markdown"><code class="language-markdown">
 <span class="token hr punctuation">---</span>
 title: Hello，world！
 date: 2019-07-15 17:25:30
@@ -469,7 +665,7 @@ tags:
 categories:
 <span class="token list punctuation">-</span> 日志  
 <span class="token hr punctuation">---</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后<code>hexo-blog-encrypt</code>插件就会把文章加密了，如下图：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131238.png"></p>
 <p>页面结构如下：</p>
@@ -486,29 +682,29 @@ categories:
 <p>我们可以看到，在第四步输出了解密后的HTML标签。</p>
 <p>解密步骤如下：</p>
 <p>1、根据密码使用AES算法将密文解密，解密的代码为：</p>
-<pre class=" language-js"><code class="language-js">  <span class="token keyword">let</span> content <span class="token operator">=</span> CryptoJS<span class="token punctuation">.</span>AES<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>encriptHtmlStr<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<pre class="line-numbers language-js"><code class="language-js">  <span class="token keyword">let</span> content <span class="token operator">=</span> CryptoJS<span class="token punctuation">.</span>AES<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>encriptHtmlStr<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>解密出来的内容是一个JS对象，里面有一个words数组，展开后如下图：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_135141.png"></p>
 <p>2、将上面那个JS对象转换为utf-8码，转换后为成为一个base64字符串。</p>
 <p>3、解码base64字符串，解码后是一个经过js转码(escape)的字符串。</p>
 <p>4、解码(unescape)上面的字符串，最终结果为HTML标签。</p>
 <p>既然知道了解密的过程，那么可以推断加密过程就是上述步骤的逆操作，在查看<code>hexo-blog-encrypt</code>的源码之后（在<code>node_modules</code>目录下），果不其然，找到如下代码：</p>
-<pre class=" language-js"><code class="language-js">data<span class="token punctuation">.</span>content <span class="token operator">=</span> <span class="token function">escape</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js">data<span class="token punctuation">.</span>content <span class="token operator">=</span> <span class="token function">escape</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
 data<span class="token punctuation">.</span>content <span class="token operator">=</span> CryptoJS<span class="token punctuation">.</span>enc<span class="token punctuation">.</span>Utf8<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
 data<span class="token punctuation">.</span>content <span class="token operator">=</span> CryptoJS<span class="token punctuation">.</span>enc<span class="token punctuation">.</span>Base64<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
 data<span class="token punctuation">.</span>content <span class="token operator">=</span> CryptoJS<span class="token punctuation">.</span>AES<span class="token punctuation">.</span><span class="token function">encrypt</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>content<span class="token punctuation">,</span> <span class="token function">String</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>CryptoJS是引入的<code>npm</code>插件<code>crypto-js</code></p>
-<pre class=" language-js"><code class="language-js">
+<pre class="line-numbers language-js"><code class="language-js">
 <span class="token keyword">const</span> CryptoJS <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'crypto-js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>那么我们也能写一个加密函数，在生成HTML字符串的时候加密它，然后把加密后的字符串渲染出来。</p>
 <h4 id="4、加密辅助函数"><a href="#4、加密辅助函数" class="headerlink" title="4、加密辅助函数"></a>4、加密辅助函数</h4><p>然而在实际操作的时候我发现在ejs文件里面用常规的方法引入<code>npm</code>插件是不行的，无论是<code>import &#39;crypto-js&#39;</code>还是 <code>require(&#39;crypto-js&#39;)</code>都是不行的。那么如何在ejs里面调用外部函数呢？ </p>
 <p>在查看<a href="https://hexo.io/zh-cn/api/helper.html">官方文档</a>之后发现需要自己写一个辅助函数（helper），才能在ejs里调用它：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_192430.png"></p>
 <p>然后我们在主题根目录下新建以下目录和文件<code>scripts/helpers/encrypt.js</code>，<code>encrypt.js</code>内代码如下：</p>
-<pre class=" language-js"><code class="language-js">
+<pre class="line-numbers language-js"><code class="language-js">
 <span class="token comment" spellcheck="true">/* global hexo */</span>
 
 
@@ -526,10 +722,10 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
   <span class="token keyword">return</span> content<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注册一个名为<code>aes</code>的辅助函数，这样才能在ejs文件里使用它。</p>
 <p>然后将<code>gallery.ejs</code>文件内中间的HTML部分改成如下代码：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>photo-wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">if</span> <span class="token attr-name">(page.password</span> <span class="token attr-name">)</span> <span class="token attr-name">&amp;#123;</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
 
@@ -553,15 +749,15 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">&amp;#125;</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>初始化<code>justifiedGallery</code>插件的那句代码修改成下面的，就是改了一个id</p>
-<pre class=" language-js"><code class="language-js">  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#encrypt-blog"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<pre class="line-numbers language-js"><code class="language-js">  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#encrypt-blog"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这段代码的作用就是判断相册是否有密码，有则加密，没有则正常渲染，密码也是写在md文件的头部，加密后页面样式和HTML结构如下：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_220409.png"></p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_211445.png"></p>
 <p>可以看到内容已经被加密成了一坨乱码，在这里，我手动加了一个<code>解密</code>按钮，原来插件是没有的，然后写点css美化一下，我是加到了<code>my.css</code>里面</p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>hbe-input-container  <span class="token number">.</span>btn-decrypt&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token number">.</span>hbe-input-container  <span class="token number">.</span>btn-decrypt&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
   <span class="token property">vertical-align</span><span class="token punctuation">:</span> top<span class="token punctuation">;</span>
   <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">120</span>px<span class="token punctuation">;</span>
@@ -575,9 +771,9 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
   <span class="token property">-moz-border-radius</span><span class="token punctuation">:</span> <span class="token number">3</span>px<span class="token punctuation">;</span>
   <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">3</span>px<span class="token punctuation">;</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="5、修改解密js文件"><a href="#5、修改解密js文件" class="headerlink" title="5、修改解密js文件"></a>5、修改解密js文件</h4><p>因为和文章的加密有点区别，而且插件的解密操作会在id为<code>encrypt-blog</code>的div上加上一些样式，会导致<code>justifiedGallery</code>样式错乱，所以是不能直接用文章的解密js文件（<code>/lib/blog-encrypt.js</code>）的。此文件在发布后才会生成，在<code>hexo-blog-encrypt</code>插件的目录（<code>node_modules/hexo-blog-encrypt</code>）下也能找到，需要做些修改才能解密相册，找到该文件后复制一份，重命名为<code>gallery-encrypt.js</code>,放到主题目录<code>source/js</code>下，替换文件尾部<code>$(document).ready()</code>里面的代码如下：</p>
-<pre class=" language-js"><code class="language-js">
+<pre class="line-numbers language-js"><code class="language-js">
 <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span>
   <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">let</span> password <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token function">getCookie</span><span class="token punctuation">(</span><span class="token function">GenerateCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -628,7 +824,7 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这段代码的作用就是在解密后清除id为<code>encrypt-blog</code>这个div的样式，然后再初始化 <code>justifiedGallery</code>插件，解决图片错乱的问题，还有给按钮绑定解密的操作。</p>
 <p>至此，相册的加密功能也已经实现了。你可以前往<a href="/galleries/private/">体验一下</a>，看你能不能破解。</p>
 <h4 id="6、注意事项"><a href="#6、注意事项" class="headerlink" title="6、注意事项"></a>6、注意事项</h4><p>需要注意的是上面HTML里引入的<code>crypto-js.js</code>这个文件，只有安装了<code>hexo-blog-encrypt</code>插件发布后才会生成，如果你不想安装这个插件，则需要手动安装<code>crypto-js</code>: <code>npm i crypto-js</code>, 然后在插件目录下找到<code>crypto-js.js</code>文件，复制出来放到<code>source/js</code>下，引用路径也要改一下。</p>
@@ -681,7 +877,7 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
 <p>1、自己部署：websocket服务器可以是一台具有公网IP的云服务器，也可以是一台具有公网IP的普通PC，没有公网IP也可以。你也可以使用zerotier或其他VPN工具将两台设备组成一个大局域网，让它们能互相通信。websocket服务器操作系统不限，只要有node.js环境。</p>
 <p>websocket服务端部署方法：安装node.js环境，将server目录移动到服务器上，进入server目录，执行以下命令</p>
 <p>安装项目依赖包</p>
-<pre class=" language-bash"><code class="language-bash">
+<pre class="line-numbers language-bash"><code class="language-bash">
 <span class="token comment" spellcheck="true"># 安装项目依赖包</span>
 
 <span class="token function">npm</span> <span class="token function">install</span> 
@@ -689,7 +885,7 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
 <span class="token comment" spellcheck="true"># 启动websocket服务</span>
 
 node index.js
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2、使用GoEasy的websocket服务</p>
 <p>注册GoEasy开发者账号并创建一个应用，获得appkey，复制到本项目相应位置即可。</p>
 <p>GoEasy官网：<a href="https://www.goeasy.io/">https://www.goeasy.io</a></p>
@@ -736,16 +932,16 @@ node index.js
     <content><![CDATA[<h4 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h4><p>有两个页面A和B，每个页面里都有一个<code>getList()</code>方法。这个两个方法都需要传一个相同的参数C，参数C的选择过程又比较麻烦。为了避免在切换A、B两个界面重复选择参数C的问题，我将参数C存入vuex中，然后在两个页面里都使用watch监听参数C来执行<code>getList()</code>方法。然后发现一个问题，从A页面进入B页面后，在B页面重新选择参数C，A页面的<code>getList()</code>方法竟然也会被执行，反之亦然，从B页面到A页面后，在A页面改变参数C也会执行B页面的<code>getList()</code>方法。</p>
 <p>后来发现是使用了因为使用了keep-alive所致，keep-alive会将Vue实例始终保持在内存中，因此该Vue实例始终存续，相应的watchers始终生效，查找相关资料后，发现许多人也遇到了这个问题，最后找到以下两种解决方案：</p>
 <h4 id="解决方法1"><a href="#解决方法1" class="headerlink" title="解决方法1"></a>解决方法1</h4><p>通过router路径来判断是否执行<code>getList()</code></p>
-<pre class=" language-js"><code class="language-js">watch<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js">watch<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token function">someValue</span><span class="token punctuation">(</span>newValue<span class="token punctuation">,</span> oldValue<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>fullPath <span class="token operator">===</span> <span class="token string">'A页面路由路径'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token comment" spellcheck="true">// do something</span>
             <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="解决方法2"><a href="#解决方法2" class="headerlink" title="解决方法2"></a>解决方法2</h4><p>添加一个flag参数来判断页面是否是active状态，使用keep-alive缓存的组件只会触发<code>activated</code>和<code>deactivated</code>事件，所以就在这两个事件触发时把flag置为true和false，只有在flag为true的时候才执行<code>getList()</code></p>
-<pre class=" language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   data <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
       activatedFlag<span class="token punctuation">:</span> <span class="token boolean">false</span>
@@ -765,9 +961,9 @@ node index.js
     <span class="token keyword">this</span><span class="token punctuation">.</span>activatedFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果页面比较多，而且各页面里的函数名称不一致的话，可以把上面代码的watch部分去掉写成一个mixin，在需要的页面引入即可</p>
-<pre class=" language-js"><code class="language-js">  <span class="token keyword">import</span> activeFlag <span class="token keyword">from</span> <span class="token string">"@/mixin/activeFlag"</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js">  <span class="token keyword">import</span> activeFlag <span class="token keyword">from</span> <span class="token string">"@/mixin/activeFlag"</span><span class="token punctuation">;</span>
 
   <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     mixins<span class="token punctuation">:</span> <span class="token punctuation">[</span>activeFlag<span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -780,7 +976,7 @@ node index.js
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>技术分享</category>
@@ -797,7 +993,7 @@ node index.js
 <p>实际需求就是做出下图这样一个表格，各类型的合计信息用红色字体显示：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%85%B1%E7%94%A8/20200228_152031js%E5%88%86%E7%B1%BB%E6%B1%82%E5%92%8C%E7%AE%97%E6%B3%95.png"></p>
 <p>原始数据格式如下：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> rawData <span class="token operator">=</span> <span class="token punctuation">[</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> rawData <span class="token operator">=</span> <span class="token punctuation">[</span>
       <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">'名称1'</span><span class="token punctuation">,</span> count1<span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> count2<span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> count3<span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
       <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">'名称2'</span><span class="token punctuation">,</span> count1<span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> count2<span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> count3<span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
       <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">'名称3'</span><span class="token punctuation">,</span> count1<span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> count2<span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> count3<span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
@@ -807,9 +1003,9 @@ node index.js
       <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span> <span class="token string">'类型C'</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">'名称7'</span><span class="token punctuation">,</span> count1<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> count2<span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> count3<span class="token punctuation">:</span> <span class="token number">35</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
       <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span> <span class="token string">'类型C'</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">'名称8'</span><span class="token punctuation">,</span> count1<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> count2<span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> count3<span class="token punctuation">:</span> <span class="token number">35</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token punctuation">]</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>算法思路：遍历该数组，按类型生成一个二维数组，再遍历该二级数组及其子元素，每遍历完一个类型的子元素后求和，并创建一个新的元素存储该类型元素的和，最后生成一个包含各类型元素数量的新数组，实现代码如下:</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">calcSum</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">calcSum</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
       <span class="token keyword">const</span> newArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
       arr<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">let</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -854,9 +1050,9 @@ node index.js
       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
       <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>生产的二维数组格式如下：</p>
-<pre class=" language-js"><code class="language-js"> newArr <span class="token operator">=</span> <span class="token punctuation">[</span>
+<pre class="line-numbers language-js"><code class="language-js"> newArr <span class="token operator">=</span> <span class="token punctuation">[</span>
         <span class="token punctuation">[</span>
           <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称1'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
           <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称2'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
@@ -872,9 +1068,9 @@ node index.js
           <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型C'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称8'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">35</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token punctuation">]</span>
       <span class="token punctuation">]</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最终数据格式如下,为了与普通的数据区分开，给求和的数据加上了一个isSumRow属性，用来生成一个className来标红：</p>
-<pre class=" language-js"><code class="language-js"> result <span class="token operator">=</span> <span class="token punctuation">[</span>
+<pre class="line-numbers language-js"><code class="language-js"> result <span class="token operator">=</span> <span class="token punctuation">[</span>
             <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称1'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
             <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称2'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
             <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型A'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称3'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">34</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
@@ -887,7 +1083,7 @@ node index.js
             <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型C'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'名称8'</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">35</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
             <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'类型C'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'count1'</span><span class="token punctuation">:</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token string">'count2'</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token string">'count3'</span><span class="token punctuation">:</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token string">'isSumRow'</span><span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
           <span class="token punctuation">]</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>技术分享</category>
@@ -906,7 +1102,7 @@ node index.js
 <p>头部和中间内容都变成了不固定的，一般用于后台管理系统，上部分是一些查询条件和操作按钮，查询条件个数不固定，中间部分是表格内容，底部一般用于分页，固定高度。</p>
 <p>此种布局用flex可以很容易的实现：父容器设置高度为100%，flex-direction设置为column(主轴设置为竖向)，上部flex-shrink设置0，下部flex-grow设置1，底部flex-shrink设置0。</p>
 <p>CSS部分：</p>
-<pre class=" language-css"><code class="language-css">    * &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css">    * &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
         <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
         <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
         <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
@@ -945,9 +1141,9 @@ node index.js
         <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
         <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid green<span class="token punctuation">;</span>
     &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>HTML部分：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>子元素<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>子元素<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
@@ -978,7 +1174,7 @@ node index.js
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>底部<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/FLEX%E4%B8%8A%E4%B8%8B%E5%B8%83%E5%B1%80/20191221_105339.png"></p>
 <p>中间的内容用来放element-ui的表格，表格高度设置为100%，可以达到固定表头内容滚动的效果，一切看起来都很美好。</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/FLEX%E4%B8%8A%E4%B8%8B%E5%B8%83%E5%B1%80/20191221_110422.png"></p>
@@ -1020,7 +1216,7 @@ column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没
     <url>/posts/5d0a.html</url>
     <content><![CDATA[<p>最近项目里有这么一个需求，把一个多级表头的table导出为excel格式。然后在网上找到一篇文章：<a href="https://www.jianshu.com/p/9a465d7d1448">js-xlsx导出自定义合并列头实现思路</a>，我按照他的教程操作之后发现比较繁琐，这篇文章的思路就是就是新建一个excel，然后用js来读取它的多级表头数据，再把json格式的表头数据复制到项目中使用。核心就是这个json格式的多级表头数据，这样一个多级表头导出来是这个样子的:</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%AF%BC%E5%87%BA%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4excel/20200227_101309.png"></p>
-<pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token property">"!ref"</span><span class="token operator">:</span> <span class="token string">"A1:F3"</span><span class="token punctuation">,</span> <span class="token property">"A1"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"t"</span><span class="token operator">:</span> <span class="token string">"s"</span><span class="token punctuation">,</span> <span class="token property">"v"</span><span class="token operator">:</span> <span class="token string">"日期"</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token string">"日期"</span><span class="token punctuation">,</span> <span class="token property">"h"</span><span class="token operator">:</span> <span class="token string">"日期"</span><span class="token punctuation">,</span> <span class="token property">"w"</span><span class="token operator">:</span> <span class="token string">"日期"</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
     <span class="token property">"B1"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"t"</span><span class="token operator">:</span> <span class="token string">"s"</span><span class="token punctuation">,</span> <span class="token property">"v"</span><span class="token operator">:</span> <span class="token string">"配送信息"</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token string">"配送信息"</span><span class="token punctuation">,</span> <span class="token property">"h"</span><span class="token operator">:</span> <span class="token string">"配送信息"</span><span class="token punctuation">,</span> <span class="token property">"w"</span><span class="token operator">:</span> <span class="token string">"配送信息"</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
     <span class="token property">"B2"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"t"</span><span class="token operator">:</span> <span class="token string">"s"</span><span class="token punctuation">,</span> <span class="token property">"v"</span><span class="token operator">:</span> <span class="token string">"姓名"</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token string">"姓名"</span><span class="token punctuation">,</span> <span class="token property">"h"</span><span class="token operator">:</span> <span class="token string">"姓名"</span><span class="token punctuation">,</span> <span class="token property">"w"</span><span class="token operator">:</span> <span class="token string">"姓名"</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
@@ -1034,17 +1230,17 @@ column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没
       <span class="token property">"s"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"c"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token number">0</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token property">"e"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"c"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token number">0</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
     &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"s"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"c"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token number">1</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token property">"e"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"c"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token number">2</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"s"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"c"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token number">1</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token property">"e"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"c"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token property">"r"</span><span class="token operator">:</span> <span class="token number">1</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span>
   &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我暂时没看出来这种格式的规律是什么，如果想要修改表头格式的化就感觉比较麻烦，需要修改excel再导出一次。</p>
 <p>后来在开源项目<a href="https://panjiachen.gitee.io/vue-element-admin/">vue-element-admin</a>上也找到了这个功能，使用方法比较简单。</p>
 <h3 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h3><p>使用npm安装<code>xlsx</code>和<code>file-saver</code>插件</p>
-<pre class=" language-shell"><code class="language-shell">npm install xlsx --save
+<pre class="line-numbers language-shell"><code class="language-shell">npm install xlsx --save
 npm install file-saver --save
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>下载Export2Excel.js文件，放到<code>src/vendor</code>目录下，下载地址：<a href="https://raw.githubusercontent.com/PanJiaChen/vue-element-admin/master/src/vendor/Export2Excel.js">Export2Excel.js</a>(github地址，打不开请科学上网）</p>
 <p>然后提取合并的表头数据，这种格式的表头数据比上面那种浅显易懂，如何合并可参考下面的图片，把蓝色部分合并单元格的坐标提取出来即可，下图的表头数据为：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%AF%BC%E5%87%BA%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4excel/20200227_111320.png"></p>
-<pre class=" language-js"><code class="language-js">
+<pre class="line-numbers language-js"><code class="language-js">
 <span class="token keyword">const</span> multiHeader <span class="token operator">=</span>
                    <span class="token punctuation">[</span>
                      <span class="token punctuation">[</span><span class="token string">'日期'</span><span class="token punctuation">,</span> <span class="token string">'配送信息'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -1052,9 +1248,9 @@ npm install file-saver --save
                    <span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 前两行的表头数据，二维数组，不够的用空白补全</span>
 <span class="token keyword">const</span> header <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'省份'</span><span class="token punctuation">,</span> <span class="token string">'市区'</span><span class="token punctuation">,</span> <span class="token string">'地址'</span><span class="token punctuation">,</span> <span class="token string">'邮编'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 最后一行的表头数据，合并过的也要用空白补全</span>
 <span class="token keyword">const</span> merges <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'A1:A3'</span><span class="token punctuation">,</span> <span class="token string">'B1:F1'</span><span class="token punctuation">,</span> <span class="token string">'B2:B3'</span><span class="token punctuation">,</span> <span class="token string">'C2:F2'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">//合并单元格的数据</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>vue文件源码：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">20</span>px <span class="token number">0</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-button</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleDownload<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>导出EXCEl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-button</span><span class="token punctuation">></span></span>
@@ -1193,7 +1389,7 @@ npm install file-saver --save
         <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
     &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>界面如图：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%AF%BC%E5%87%BA%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4excel/20200227_111142.png"></p>
 <p>导出来的excel如图：</p>
@@ -1278,10 +1474,10 @@ npm install file-saver --save
 <h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h3><p>Markdown 支持两种形式的链接语法： 行内式和参考式两种形式，行内式一般使用较多。</p>
 <h4 id="行内式"><a href="#行内式" class="headerlink" title="行内式"></a>行内式</h4><p>语法说明：</p>
 <p>[]里写链接文字，里写链接地址, 中的<code>”“</code>中可以为链接指定title属性，title属性可加可不加。title属性的效果是鼠标悬停在链接上会出现指定的 title文字。链接地址与链接标题前有一个空格。</p>
-<pre class=" language-markdown"><code class="language-markdown">欢迎来到<span class="token url">[wakenhong's blog](https://wakenhong.zone)</span>
+<pre class="line-numbers language-markdown"><code class="language-markdown">欢迎来到<span class="token url">[wakenhong's blog](https://wakenhong.zone)</span>
 
 欢迎来到<span class="token url">[wakenhong's blog](https://wakenhong <span class="token string">"wakenhong's blog"</span>)</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <p>欢迎来到<a href="http://wakenhong.zone/">wakenhong’s blog</a></p>
 <p>欢迎来到<a href="http://wakenhong.zone/">wakenhong’s blog</a></p>
@@ -1296,9 +1492,9 @@ npm install file-saver --save
 </code></pre>
 <p>我经常去的几个网站<a href="http://www.google.com/">Google</a>,<a href="https://www.youtube.com/">YouTube</a>,<a href="https://www.youtube.com/">YouTube</a>。</p>
 <h4 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h4><p>语法说明：<br>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用&lt;&gt;包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：</p>
-<pre class=" language-markdown"><code class="language-markdown">&lt;http://example.com/>
+<pre class="line-numbers language-markdown"><code class="language-markdown">&lt;http://example.com/>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address@example.com</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>view</p>
 <p><a href="http://example.com/">http://example.com/</a><br><a href="mailto:address@example.com">address@example.com</a></p>
 <hr>
@@ -1308,15 +1504,15 @@ npm install file-saver --save
 <li>Markdown Extra 只支持在标题后插入锚点，其它地方无效。</li>
 <li>Leanote 编辑器右侧显示效果区域暂时不支持锚点跳转，所以点来点去发现没有跳转不必惊慌，但是你发布成笔记或博文后是支持跳转的。</li>
 </ol>
-<pre class=" language-markdown"><code class="language-markdown"> 跳转测试<span class="token entity" title="&#123;">&amp;#123;</span>#toc-heading-18<span class="token entity" title="&#125;">&amp;#125;</span>
-</code></pre>
+<pre class="line-numbers language-markdown"><code class="language-markdown"> 跳转测试<span class="token entity" title="&#123;">&amp;#123;</span>#toc-heading-18<span class="token entity" title="&#125;">&amp;#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>跳转到<a href="https://liyangzone.com/2019/07/17/markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#toc-heading-18">页尾</a>，这个有点问题，会跳转到新标签页的页尾，因为hexo会在生成的a标签上加上<code>target=&quot;_blank&quot;</code>这个属性，暂时无法解决</p>
 <hr>
 <h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>有序列表则使用数字接着一个英文句点。</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">1.</span> 有序列表项 一
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token list punctuation">1.</span> 有序列表项 一
 <span class="token list punctuation">2.</span> 有序列表项 二
 <span class="token list punctuation">3.</span> 有序列表项 三
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ol>
 <li>有序列表项 一</li>
@@ -1324,10 +1520,10 @@ npm install file-saver --save
 <li>有序列表项 三</li>
 </ol>
 <h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>使用 *，+，- 表示无序列表。</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">-</span> 无序列表项 一
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token list punctuation">-</span> 无序列表项 一
 <span class="token list punctuation">-</span> 无序列表项 二
 <span class="token list punctuation">-</span> 无序列表项 三
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ul>
 <li>无序列表项 一</li>
@@ -1336,14 +1532,14 @@ npm install file-saver --save
 </ul>
 <h4 id="定义型列表"><a href="#定义型列表" class="headerlink" title="定义型列表"></a>定义型列表</h4><p>语法说明：</p>
 <p>定义型列表由名词和解释组成。一行写上定义，紧跟一行写上解释。解释的写法:紧跟一个缩进TabTab</p>
-<pre class=" language-markdown"><code class="language-markdown">代码块 1 Markdown
+<pre class="line-numbers language-markdown"><code class="language-markdown">代码块 1 Markdown
 :    轻量级文本标记语言，可以转换成html，pdf等格式（左侧有一个可见的冒号和四个不可见的空格）
 
 代码块 2
 :   这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）
 
 <span class="token code keyword">        代码块（左侧有八个不可见的空格）</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ul>
 <li><p>代码块 1 Markdown</p>
@@ -1357,14 +1553,14 @@ npm install file-saver --save
 </code></pre>
 <h4 id="列表缩进"><a href="#列表缩进" class="headerlink" title="列表缩进"></a>列表缩进</h4><p>语法说明：</p>
 <p>列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span>   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span>   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
 那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 
 软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！ 
 <span class="token list punctuation">*</span>   那榆荫下的一潭， 不是清泉， 是天上虹； 揉碎在浮藻间， 沉淀着彩虹似的梦。 
 寻梦？撑一支长篙， 向青草更青处漫溯； 满载一船星辉， 在星辉斑斓里放歌。 
 但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！ 
 悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ul>
 <li>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。<br>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。<br>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</li>
@@ -1372,7 +1568,7 @@ npm install file-saver --save
 </ul>
 <h4 id="包含段落的列表"><a href="#包含段落的列表" class="headerlink" title="包含段落的列表"></a>包含段落的列表</h4><p>语法说明：</p>
 <p>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符（显示效果与代码一致）：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span>   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span>   轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。
 那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。 
 软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！
 
@@ -1381,7 +1577,7 @@ npm install file-saver --save
 但我不能放歌， 悄悄是别离的笙箫； 夏虫也为我沉默， 沉默是今晚的康桥！
 
 <span class="token list punctuation">*</span>    悄悄的我走了， 正如我悄悄的来； 我挥一挥衣袖， 不带走一片云彩。
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ul>
 <li><p>轻轻的我走了， 正如我轻轻的来； 我轻轻的招手， 作别西天的云彩。<br>那河畔的金柳， 是夕阳中的新娘； 波光里的艳影， 在我的心头荡漾。<br>软泥上的青荇， 油油的在水底招摇； 在康河的柔波里， 我甘心做一条水草！</p>
@@ -1392,10 +1588,10 @@ npm install file-saver --save
 </ul>
 <h4 id="包含引用的列表"><a href="#包含引用的列表" class="headerlink" title="包含引用的列表"></a>包含引用的列表</h4><p>语法说明：</p>
 <p>如果要在列表项目内放进引用，那 &gt; 就需要缩进：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span>   阅读的方法:
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span>   阅读的方法:
 <span class="token code keyword">    > 打开书本。</span>
 <span class="token code keyword">    > 打开电灯。</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ul>
 <li><p>阅读的方法:</p>
@@ -1406,27 +1602,27 @@ npm install file-saver --save
 </ul>
 <h4 id="包含代码区块的引用"><a href="#包含代码区块的引用" class="headerlink" title="包含代码区块的引用"></a>包含代码区块的引用</h4><p>语法说明：<br>如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：</p>
 <h4 id="一个特殊情况"><a href="#一个特殊情况" class="headerlink" title="一个特殊情况"></a>一个特殊情况</h4><p>在特殊情况下，项目列表很可能会不小心产生，像是下面这样的写法：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">1986.</span> What a great season.
-</code></pre>
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token list punctuation">1986.</span> What a great season.
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>会显示成：</p>
 <ol>
 <li>What a great season.</li>
 </ol>
 <p>换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠：</p>
-<pre class=" language-markdown"><code class="language-markdown">1986\. What a great season.
-</code></pre>
+<pre class="line-numbers language-markdown"><code class="language-markdown">1986\. What a great season.
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>才会正常显示成：</p>
 <p>\1986. What a great season.</p>
 <hr>
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>语法说明：</p>
 <p>引用需要在被引用的文本前加上&gt;符号。</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token blockquote punctuation">></span> 这是一个有两段文字的引用,
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token blockquote punctuation">></span> 这是一个有两段文字的引用,
 无意义的占行文字1.
 无意义的占行文字2.
 
 <span class="token blockquote punctuation">></span> 无意义的占行文字3.
 无意义的占行文字4.
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <blockquote>
 <p>这是一个有两段文字的引用,<br>无意义的占行文字1.<br>无意义的占行文字2.</p>
@@ -1435,12 +1631,12 @@ npm install file-saver --save
 <p>无意义的占行文字3.<br>无意义的占行文字4.</p>
 </blockquote>
 <h4 id="引用的多层嵌套"><a href="#引用的多层嵌套" class="headerlink" title="引用的多层嵌套"></a>引用的多层嵌套</h4><p>区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &gt; ：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token blockquote punctuation">>>></span> 请问 Markdwon 怎么用？ - 小白
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token blockquote punctuation">>>></span> 请问 Markdwon 怎么用？ - 小白
 
 <span class="token blockquote punctuation">>></span> 自己看教程！ - 愤青
 
 <span class="token blockquote punctuation">></span> 教程在哪？ - 小白
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1457,13 +1653,13 @@ npm install file-saver --save
 <p>教程在哪？ - 小白</p>
 </blockquote>
 <h4 id="引用其它要素"><a href="#引用其它要素" class="headerlink" title="引用其它要素"></a>引用其它要素</h4><p>引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token blockquote punctuation">></span> <span class="token list punctuation">1.</span>   这是第一行列表项。
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token blockquote punctuation">></span> <span class="token list punctuation">1.</span>   这是第一行列表项。
 <span class="token blockquote punctuation">></span> <span class="token list punctuation">2.</span>   这是第二行列表项。
 <span class="token blockquote punctuation">></span> 
 <span class="token blockquote punctuation">></span> 给出一些例子代码：
 <span class="token blockquote punctuation">></span> 
 <span class="token blockquote punctuation">></span><span class="token code keyword">     return shell_exec("echo $input | $markdown_script");</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <ol>
 <li>这是第一行列表项。</li>
@@ -1477,18 +1673,18 @@ npm install file-saver --save
 <h3 id="插入图像"><a href="#插入图像" class="headerlink" title="插入图像"></a>插入图像</h3><h4 id="行内式-1"><a href="#行内式-1" class="headerlink" title="行内式"></a>行内式</h4><p>图片的创建方式与超链接相似，而且和超链接一样也有两种写法，行内式和参考式写法。</p>
 <p>语法中图片Alt的意思是如果图片因为某些原因不能显示，就用定义的图片Alt文字来代替图片。 图片Title则和链接中的Title一样，表示鼠标悬停与图片上时出现的文字。 Alt 和 Title 都不是必须的，可以省略，但建议写上</p>
 <p>语法说明：![图片Alt]图片地址“图片Title”</p>
-<pre class=" language-markdown"><code class="language-markdown">美丽风景： 
+<pre class="line-numbers language-markdown"><code class="language-markdown">美丽风景： 
 <span class="token url">![美丽风景](https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/110404-152108304476cb.jpg <span class="token string">"美丽风景"</span>)</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/110404-152108304476cb.jpg" alt="美丽风景" style="zoom:150%;" />
 
 <h4 id="参考式-1"><a href="#参考式-1" class="headerlink" title="参考式"></a>参考式</h4><p>语法说明：</p>
 <p>在文档要插入图片的地方写![图片Alt][标记]</p>
 <p>在文档的最后写上[标记]:图片地址 “Title”</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token url">![美丽风景](https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/110404-152108304476cb.jpg <span class="token string">"美丽风景"</span>)</span>
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token url">![美丽风景](https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/110404-152108304476cb.jpg <span class="token string">"美丽风景"</span>)</span>
 
 [scenery]:https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/110404-152108304476cb.jpg "美丽风景"
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/110404-152108304476cb.jpg" alt="美丽风景" style="zoom:150%;" />
 
@@ -1498,14 +1694,14 @@ npm install file-saver --save
 <h3 id="注脚"><a href="#注脚" class="headerlink" title="注脚"></a>注脚</h3><p>语法说明：</p>
 <p>在需要添加注脚的文字后加上脚注名字[^注脚名字],称为加注。 然后在文本的任意位置一般在最后一般在最后添加脚注，脚注前必须有对应的脚注名字。</p>
 <p>注意：经测试注脚与注脚之间必须空一行，不然会失效。成功后会发现，即使你没有把注脚写在文末，经Markdown转换后，也会自动归类到文章的最后。</p>
-<pre class=" language-markdown"><code class="language-markdown">使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^2], 你可以使用 Leanote[^Le] 编辑器进行书写。
+<pre class="line-numbers language-markdown"><code class="language-markdown">使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^2], 你可以使用 Leanote[^Le] 编辑器进行书写。
 
 [^1]:Markdown是一种纯文本标记语言
 
 [^2]:HyperText Markup Language 超文本标记语言
 
 [^Le]:开源笔记平台，支持Markdown和笔记直接发为博文
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <p>使用 Markdown<a href="https://liyangzone.com/2019/07/17/markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/Markdown%E6%98%AF%E4%B8%80%E7%A7%8D%E7%BA%AF%E6%96%87%E6%9C%AC%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80">^1</a>可以效率的书写文档, 直接转换成 HTML[^2], 你可以使用 Leanote<a href="https://liyangzone.com/2019/07/17/markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/%E5%BC%80%E6%BA%90%E7%AC%94%E8%AE%B0%E5%B9%B3%E5%8F%B0%EF%BC%8C%E6%94%AF%E6%8C%81Markdown%E5%92%8C%E7%AC%94%E8%AE%B0%E7%9B%B4%E6%8E%A5%E5%8F%91%E4%B8%BA%E5%8D%9A%E6%96%87">^Le</a> 编辑器进行书写。</p>
 <p>[^2]: HyperText Markup Language 超文本标记语言</p>
@@ -1515,25 +1711,25 @@ npm install file-saver --save
 <ol>
 <li>简单方式写表格：</li>
 </ol>
-<pre class=" language-markdown"><code class="language-markdown">学号|姓名|分数
+<pre class="line-numbers language-markdown"><code class="language-markdown">学号|姓名|分数
 -|-|-
 小明|男|75
 小红|女|79
 小陆|男|92
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.原生方式写表格：</p>
-<pre class=" language-markdown"><code class="language-markdown">|学号|姓名|分数|
+<pre class="line-numbers language-markdown"><code class="language-markdown">|学号|姓名|分数|
 |-|-|-|
 |小明|男|75|
 |小红|女|79|
 |小陆|男|92|
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>3.为表格第二列指定方向：</p>
-<pre class=" language-markdown"><code class="language-markdown">产品|价格
+<pre class="line-numbers language-markdown"><code class="language-markdown">产品|价格
 -|-:
 Leanote 高级账号|60元/年
 Leanote 超级账号|120元/年
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <ol>
 <li>简单方式写表格：</li>
@@ -1605,7 +1801,7 @@ Leanote 超级账号|120元/年
 </tr>
 </tbody></table>
 <h3 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token hr punctuation">* * *</span>
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token hr punctuation">* * *</span>
 
 <span class="token hr punctuation">***</span>
 
@@ -1614,7 +1810,7 @@ Leanote 超级账号|120元/年
 <span class="token hr punctuation">- - -</span>
 
 <span class="token hr punctuation">---------------------------------------</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>显示效果都一样</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>对于程序员来说这个功能是必不可少的，插入程序代码的方式有两种，一种是利用缩进TabTab, 另一种是利用”`”符号（一般在ESC键下方）包裹代码。</p>
 <p>语法说明：</p>
@@ -1635,22 +1831,22 @@ Leanote 超级账号|120元/年
     &#125;
 </code></pre>
 <p>view</p>
-<pre class=" language-c"><code class="language-c">    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<pre class="line-numbers language-c"><code class="language-c">    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
     <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
     <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
-<h4 id="用六个-包裹多行代码"><a href="#用六个-包裹多行代码" class="headerlink" title="用六个`包裹多行代码"></a>用六个`包裹多行代码</h4><pre class=" language-j"><code class="language-j"><span class="token conjunction variable">`</span> <span class="token conjunction variable">`</span> <span class="token conjunction variable">`</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="用六个-包裹多行代码"><a href="#用六个-包裹多行代码" class="headerlink" title="用六个`包裹多行代码"></a>用六个`包裹多行代码</h4><pre class="line-numbers language-j"><code class="language-j"><span class="token conjunction variable">`</span> <span class="token conjunction variable">`</span> <span class="token conjunction variable">`</span>
 <span class="token verb keyword">#</span>include <span class="token verb keyword">&lt;</span>stdi<span class="token verb keyword">o.</span>h<span class="token verb keyword">></span>
 int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span>
 <span class="token conjunction variable">&amp;</span><span class="token verb keyword">#</span><span class="token number">123</span><span class="token verb keyword">;</span>
     printf<span class="token punctuation">(</span><span class="token conjunction variable">"</span>Hello world<span class="token conjunction variable">"</span><span class="token punctuation">)</span><span class="token verb keyword">;</span>
 <span class="token conjunction variable">&amp;</span><span class="token verb keyword">#</span><span class="token number">125</span><span class="token verb keyword">;</span>
 <span class="token conjunction variable">`</span> <span class="token conjunction variable">`</span> <span class="token conjunction variable">`</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>另外说明一下，第一个 ```后可以加上代码的类型，js代码就加上js,css就加上css，渲染出来的样式会有区别。比如下面这段，虽然内容基本差不多，第一个是js，第二个是json，渲染出来就是不一样的。如果不加的话文字都是白色的</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> object <span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> object <span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   <span class="token string">"avatar"</span><span class="token punctuation">:</span> <span class="token string">"http://image.luokangyuan.com/1_qq_27922023.jpg"</span><span class="token punctuation">,</span>
   <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"码酱"</span><span class="token punctuation">,</span>
   <span class="token string">"introduction"</span><span class="token punctuation">:</span> <span class="token string">"我不是大佬，只是在追寻大佬的脚步"</span><span class="token punctuation">,</span>
@@ -1665,13 +1861,13 @@ int main<span class="token punctuation">(</span>void<span class="token punctuati
   <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"码酱"</span><span class="token punctuation">,</span>
   <span class="token string">"introduction"</span><span class="token punctuation">:</span> <span class="token string">"我不是大佬，只是在追寻大佬的脚步"</span><span class="token punctuation">,</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="HTML-原始码"><a href="#HTML-原始码" class="headerlink" title="HTML 原始码"></a>HTML 原始码</h4><p>在代码区块里面， &amp; 、 &lt; 和 &gt; 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，剩下的 Markdown 都会帮你处理，例如：</p>
 <p>第一个例子：</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
    © 2018 <span class="token italic"><span class="token punctuation">*</span><span class="token punctuation">*</span><span class="token punctuation">*</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>view</p>
 <p>© 2018 ***</p>
 <blockquote>
@@ -1703,7 +1899,7 @@ int main<span class="token punctuation">(</span>void<span class="token punctuati
 <p>好吧，这就是我想要的效果，而且博客下面还有教程，我研究了半天，把代码都拷到本机运行了之后，发现他这个教程也只是实现了相册的列表界面，至于目录界面是怎么弄出来的只是一笔带过。并没有实现的细节。我个人猜测他的目录界面是一个<code>album/index.md</code>文件，然后md文件里手动写的HTML代码。 </p>
 <p>虽然这种方式我也能实现，但我并不想这么做，因为我感觉在markdown文件里面写HTML和js不是很优雅，也有些繁琐，假如要添加一个相册的话还要手动修改里面的HTML代码，添加对应的链接。</p>
 <p>后来我仔细研究了这个主题的源码，发现这个主题的<code>友情链接</code>界面实现的方式是这样的，读取<code>sources/_data/friends.json</code>文件,该文件内容如下：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">[</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
   <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/1_qq_27922023.jpg"</span><span class="token punctuation">,</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"码酱"</span><span class="token punctuation">,</span>
   <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"我不是大佬，只是在追寻大佬的脚步"</span><span class="token punctuation">,</span>
@@ -1722,25 +1918,25 @@ int main<span class="token punctuation">(</span>void<span class="token punctuati
   <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"ttps://me.csdn.net/jlh912008548"</span><span class="token punctuation">,</span>
   <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
 &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>该文件包含每个友链的头像、名字、介绍、地址、标题信息，然后hexo会按照friends.ejs模板文件里的结构渲染出来列表，实现的效果就是这样的:<br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-02.jpg"></p>
 <p>就是三个a标签，里面包含头像、地址等信息，点击后跳到对应的地址。</p>
 <p>那么我们也能自定义一个相册的配置文件和模板文件，然后hexo读取这个配置文件，自动生成目录界面和列表界面，这样的话，只需要修改这个配置文件就能完成对相册的各种操作（增删改）。</p>
 <p>好吧，有了思路，就已经成功一半了，至于代码实现呢，就只是时间问题了。花了一个周末的时间我终于把它实现了。下面是具体实现过程:</p>
 <h4 id="1、添加【相册】菜单"><a href="#1、添加【相册】菜单" class="headerlink" title="1、添加【相册】菜单"></a>1、添加【相册】菜单</h4><p>这里要修改几个文件：</p>
 <p>该主题的配置文件<code>_config.yml</code> ，不要跟站点根目录下的同名文件搞混了，在<code>menu</code>下添加以下代码:</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">Galleries</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">Galleries</span><span class="token punctuation">:</span>
     <span class="token key atrule">url</span><span class="token punctuation">:</span> /galleries
     <span class="token key atrule">icon</span><span class="token punctuation">:</span> fa<span class="token punctuation">-</span>photo
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>该主题的语言配置文件目录 <code>languages</code>下的 <code>default.yml</code>和<code>zh-CN.yml</code>，分别是英文和中文的配置文件，分别添加以下内容，</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">galleries</span><span class="token punctuation">:</span> galleries
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">galleries</span><span class="token punctuation">:</span> galleries
 
 <span class="token key atrule">galleries</span><span class="token punctuation">:</span> 相册
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>该主题目录下<code>layout/_partial/navigation.ejs</code>和<code>layout/_partial/mobile-nav.ejs</code>文件里添加</p>
-<pre class=" language-js"><code class="language-js">    menuMap<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"Galleries"</span><span class="token punctuation">,</span> <span class="token string">"相册"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<pre class="line-numbers language-js"><code class="language-js">    menuMap<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"Galleries"</span><span class="token punctuation">,</span> <span class="token string">"相册"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>至于添加到什么位置，你打开文件就知道了，里面会有类似格式的代码，很容易找到的。</p>
 <p>做完以上操作后，你就会发现<code>相册</code>的菜单已经出现了：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-03.jpg"></p>
@@ -1749,13 +1945,13 @@ int main<span class="token punctuation">(</span>void<span class="token punctuati
 <p>因为站点下并没有<code>galleries/index.html</code>这个文件，如何生成这个文件呢?<br>在站点根目录<code>source</code>下新建<code>galleries</code>目录，然后在该目录下新建<code>index.md</code>，就会生成<code>index.html</code>文件了，然而却是这个效果：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-05.jpg"></p>
 <h4 id="2、生成相册目录和相册列表"><a href="#2、生成相册目录和相册列表" class="headerlink" title="2、生成相册目录和相册列表"></a>2、生成相册目录和相册列表</h4><p>这是为什么呢？因为hexo把这个文件当成一个普通的文章来渲染了，而我们需要自定义样式，不能让它渲染成普通的文章。要让它渲染成一个<code>layout</code>,也就是我们自定义的模板。需要以下操作：<br>在<code>index.md</code>文件里添加以下内容，注意，那几个中划线也不要少了。</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">title</span><span class="token punctuation">:</span> 相册
 <span class="token key atrule">layout</span><span class="token punctuation">:</span> <span class="token string">"galleries"</span>
 <span class="token punctuation">---</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>首先添加自定义CSS样式文件，该<code>主题</code>目录下的<code>source/css</code>里新建<code>gallery.css</code>文件，复制以下css样式进去：</p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>gallery-wrapper&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token number">.</span>gallery-wrapper&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">padding-top</span><span class="token punctuation">:</span> <span class="token number">30</span>px<span class="token punctuation">;</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
 <span class="token number">.</span>gallery-wrapper <span class="token number">.</span>gallery-box&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
@@ -1842,9 +2038,9 @@ int main<span class="token punctuation">(</span>void<span class="token punctuati
   &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在该主题<code>layout</code>目录下新建<code>galleries.ejs</code>文件，添加以下代码：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/css/gallery.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/css/gallery.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
 &lt;%- partial('_partial/bg-cover') %>
 
@@ -1871,9 +2067,9 @@ int main<span class="token punctuation">(</span>void<span class="token punctuati
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span>
 
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>同目录下新建<code>gallery.ejs</code>，添加以下代码：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/css/gallery.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/css/gallery.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/libs/fancybox/jquery.fancybox.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/libs/justifiedGallery/justifiedGallery.min.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
@@ -1928,12 +2124,12 @@ for (var i = 0, len = photos.length; i &lt; len; i++) <span class="token entity"
   <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#mygallery"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上代码实现的功能呢，就是读取相册配置文件并把相册目录和相册列表都渲染成HTML，用<code>&lt;% %&gt;</code>包起来的代码是<code>ejs</code>语法，调试的话是在本地控制台输出的而不是浏览器，就是你输入<code>hexo s</code>的地方，我这里用的是WebStorm自带的终端，看下图：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-06.jpg"></p>
 <p>另外上面代码里引用了两个<code>jquery插件</code>，分别是<code>fancybox</code>和<code>justifiedGallery</code>, 一个是点击弹出的轮播插件，一个是自动调整图片布局的插件，需要自行下载并放到相应目录，当然，你也可以用浏览器调试工具直接在我的博客上下载，在sources里找到对应的文件，另存为就行。</p>
 <h4 id="3、制作相册配置文件"><a href="#3、制作相册配置文件" class="headerlink" title="3、制作相册配置文件"></a>3、制作相册配置文件</h4><p>在<code>站点</code>目录<code>sources/_data/</code>下新建一个<code>galleries.json</code>的文件，模板如下：</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">[</span>
   &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"2017"</span><span class="token punctuation">,</span>
     <span class="token property">"cover"</span><span class="token operator">:</span> <span class="token string">"2017/IMG_20171109_124516.jpg"</span><span class="token punctuation">,</span>
@@ -1968,14 +2164,14 @@ for (var i = 0, len = photos.length; i &lt; len; i++) <span class="token entity"
     <span class="token punctuation">]</span>
   &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token punctuation">]</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>就是一个包含多个相册的列表JSON，每个相册有以下字段，<code>name</code>是相册标题，<code>cover</code>是封面图片，从相册里随便选一个就行，<code>description</code>是相册介绍，<code>photos</code>是图片列表。图片较少的话手动复制进去就行，如果你图片较多的话推荐使用脚本之类的东西自动生成，我是使用了上面博客里的js文件生成的。我这里使用了七牛对象存储做为图床，需要在代码里加上七牛的地址才能正常显示。</p>
 <p>配置文件建好了之后还没完，只剩最后一个步骤了，在<code>galleries</code>下建立对应的相册名称目录和文件，比如我这三个相册需要建 2017 2018 2019三个目录，然后下面再分别新建<code>index.md</code>文件，文件内容为:</p>
-<pre class=" language-html"><code class="language-html">---
+<pre class="line-numbers language-html"><code class="language-html">---
 title: 2017
 layout: "gallery"
 ---
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>建好相应目录和文件之后，如果你的图片路径也没有错的话，相册目录和列表就都会渲染出来了，如下所示：</p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-07.jpg"></p>
 <p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722_161044.jpg"></p>
@@ -1985,8 +2181,8 @@ layout: "gallery"
 <p>看起来似乎没什么问题，高端大气上档次，然而做好了我发现图片的排列顺序是这个样子的，是按列竖向排列的，不太符合阅读习惯，PASS。</p>
 <p>另外一种布局呢是等高布局，如图；<br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190723_110706.jpg"></p>
 <p>这种布局是等高布局，图片高度一致，宽度自适应，图片托管网站flickr就是用的这种模式，但是用CSS方法是实现不了的，因为每一行最后张图片不一定能正好撑满这一行，需要用js动态设置图片的宽高来实现，上面引用的<code>justifiedGallery</code>插件就是来完成这个的。<br>下面代码的功能就是初始化这个插件，间距是5px，每一行的高度是150px。</p>
-<pre class=" language-js"><code class="language-js">  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#mygallery"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<pre class="line-numbers language-js"><code class="language-js">  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#mygallery"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这两种布局呢，上面的代码里都是包含了的。是可以手动切换的。只需要把上面那句代码注释掉就会切换到瀑布流布局，效果如下图：<br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190723_134939.jpg"></p>
 <p>当然，你要是对我写的样式不满意的话也可以自己修改代码，边框和文件名都是可以去掉的。</p>
 <h4 id="5、图床相关事项"><a href="#5、图床相关事项" class="headerlink" title="5、图床相关事项"></a>5、图床相关事项</h4><p>2019-08-28更新:</p>
@@ -1997,33 +2193,33 @@ layout: "gallery"
 <p>在相册列表界面应使用缩略图而不是使用原图。上面代码中 <code>a标签</code>里的地址是大图地址，点击弹出的时候才会加载，<code>img</code>标签里的地址是缩略图地址。</p>
 <p>缩略图大小我调整为600px宽度，这样每个图片体积可减少到100KB以下。这样一个100张图片的相册，缩略图也不超过10MB。缩略图我使用 <code>Light Image Resizer</code> 软件批量生成。</p>
 <p>上面对应的代码需要改为:</p>
-<pre class=" language-js"><code class="language-js">
+<pre class="line-numbers language-js"><code class="language-js">
  imageStr <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;a href=\"http://imgs.liyangzone.com/"</span> <span class="token operator">+</span> photo <span class="token operator">+</span> <span class="token string">"\""</span> <span class="token operator">+</span>
             <span class="token string">"     class=\"photo-item\" rel=\"example_group\""</span> <span class="token operator">+</span>
             <span class="token string">"     data-fancybox=\"images\">"</span> <span class="token operator">+</span>
             <span class="token string">"      &lt;img src=\"http://imgs.liyangzone.com/gallery-tiny/"</span> <span class="token operator">+</span> photo <span class="token operator">+</span> <span class="token string">"\""</span> <span class="token operator">+</span>
             <span class="token string">"       alt="</span> <span class="token operator">+</span> photo <span class="token operator">+</span> <span class="token string">">"</span> <span class="token operator">+</span>
             <span class="token string">"    &lt;/a>"</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>二是使用七牛自带的<code>图片样式</code>功能，该功能提供简单快捷的图片格式转换、缩略、剪裁功能。只需要填写几个参数，即可对图片进行缩略操作，生成各种缩略图。比如我建立了一个名为 <code>w33</code> 的图片样式，该样式的功能就是生成原图33%大小的缩略图。假如一个100×100的图片，在图片地址后面加上这个样式后就变成33×33大小的了。对应代码需改为：</p>
-<pre class=" language-js"><code class="language-js">
+<pre class="line-numbers language-js"><code class="language-js">
  imageStr <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;a href=\"http://imgs.liyangzone.com/"</span> <span class="token operator">+</span> photo <span class="token operator">+</span> <span class="token string">"!w95\""</span> <span class="token operator">+</span>
             <span class="token string">"     class=\"photo-item\" rel=\"example_group\""</span> <span class="token operator">+</span>
             <span class="token string">"     data-fancybox=\"images\">"</span> <span class="token operator">+</span>
             <span class="token string">"      &lt;img src=\"http://imgs.liyangzone.com/"</span> <span class="token operator">+</span> photo <span class="token operator">+</span> <span class="token string">"!w33\""</span> <span class="token operator">+</span>
             <span class="token string">"       alt="</span> <span class="token operator">+</span> photo <span class="token operator">+</span> <span class="token string">">"</span> <span class="token operator">+</span>
             <span class="token string">"    &lt;/a>"</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>列表页使用33%大小的样式，查看大图使用95%大小的。上面的叹号是样式分隔符，七牛默认的分隔符有四个:</p>
-<pre class=" language-html"><code class="language-html">- _ ! /
-</code></pre>
+<pre class="line-numbers language-html"><code class="language-html">- _ ! /
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>也可以改成下面的：</p>
-<pre class=" language-html"><code class="language-html">~ ` @ $ ^ &amp; * ( ) + = <span class="token entity" title="&#123;">&amp;#123;</span> <span class="token entity" title="&#125;">&amp;#125;</span> [ ] | : ; " ' &lt; >
-</code></pre>
+<pre class="line-numbers language-html"><code class="language-html">~ ` @ $ ^ &amp; * ( ) + = <span class="token entity" title="&#123;">&amp;#123;</span> <span class="token entity" title="&#125;">&amp;#125;</span> [ ] | : ; " ' &lt; >
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>生成的图片地址是这样的,你可以复制到地址栏查看效果：</p>
-<pre class=" language-html"><code class="language-html">http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w33
+<pre class="line-numbers language-html"><code class="language-html">http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w33
 http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w75
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>另外建议开启七牛的原图保护功能并配置Referer防盗链，防止被恶意刷流量。</p>
 <p>我目前使用的是第一种方案，只是把缩略图放到腾讯CDN了，不想麻烦的可以使用第二种。</p>
 <p>博客源码已上传至github: <a href="https://github.com/liyang5945/liyang5945.github.io">点击前往</a>,觉得不错的可以给个STAR支持一下。</p>
