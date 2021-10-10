@@ -36,8 +36,8 @@ menu:
 # Website start time.
 # 站点运行开始时间.
 time:
-  enable: false
-  year: 2019 # 年份
+  enable: true
+  year: 2020 # 年份
   month: 06 # 月份
   date: 28 # 日期
   hour: 00 # 小时
@@ -98,7 +98,7 @@ video:
 recommend:
   enable: true
   showTitle: true
-  useConfig: false
+  useConfig: true
 
 # Configure website favicon and LOGO
 # 配置网站favicon和网站LOGO
@@ -460,13 +460,13 @@ canvas_nest:
   enable: true
   color: 0,0,255 # 线条颜色, 默认: '0,0,0' ；三个数字分别为(R,G,B)，注意用,分割
   pointColor: 0,0,255 # 交点颜色, 默认: '0,0,0' ；三个数字分别为(R,G,B)，注意用,分割
-  opacity: 0.7 # 线条透明度（0~1）, 默认: 0.5
+  opacity: 0.6 # 线条透明度（0~1）, 默认: 0.5
   zIndex: -1 # 背景的 z-index 属性，css 属性用于控制所在层的位置, 默认: -1.
-  count: 99 # 线条的总数量, 默认: 99  
+  count: 50 # 线条的总数量, 默认: 99
 
 # 背景静止彩带.
 ribbon:
-  enable: true
+  enable: false
   size: 150 # 彩带大小, 默认: 90.
   alpha: 0.6 # 彩带透明度 (0 ~ 1), 默认: 0.6.
   zIndex: -1 # 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1.
@@ -474,7 +474,7 @@ ribbon:
 
 # 背景动态彩带.
 ribbon_dynamic:
-  enable: true  
+  enable: true
 
 # 手机二级菜单.
 navMenu:

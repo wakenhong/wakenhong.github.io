@@ -32,9 +32,12 @@ skip_render: aboutme/**  # 其意思为在对文件进行渲染时跳过aboutme�
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+titlecase: false # Transform title into titlecase # Open external links in new tab
 filename_case: 0
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
 render_drafts: false
 post_asset_folder: false
 relative_link: false
@@ -50,7 +53,7 @@ highlight:
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'tomorrow'
-  line_number: false    # default false
+  line_number: true    # default false
   custom_css:
 prismjs:
   enable: false
@@ -114,7 +117,7 @@ theme: hexo-theme-matery
 
 deploy:
 - type: git
-  repo: https://github.com/liyang5945/liyang5945.github.io
+  #repo: https://github.com/liyang5945/liyang5945.github.io
 #  - type: cos
 #    appId: ******
 #    secretId: ********liyang
@@ -141,9 +144,10 @@ feed:
   content_limit_delim: ' '
  # 添加 RSS 订阅支持     
 # Security
-##
+## 加密
 encrypt:
   enable: true
+
 
 hexo_external_link:
   enable: true
@@ -152,8 +156,12 @@ hexo_external_link:
   html_file_name: 'go.html'
   target_blank: true
   link_rel: 'external nofollow noopener noreferrer'
-  domain: 'your_domain' # 如果开启了防盗链，填写你的域名
+  domain: 'your_domain' # 如果开启了防盗链
   safety_chain: true
+  ignore_attrs: 
+    - 'data-fancybox'
+    - 'ignore-external-link'
+
   
 abbrlink:
   alg: crc16   #算法： crc16(default) and crc32
@@ -205,7 +213,7 @@ webPushNotification:
   - "BGJCTTyH0tHqCgX2qvyl8bxaUPLUvbeym9PpWUTqyh0YQOymL542Hr4k1M84vh6p2GKbT9Z-yxsuvEeMntcwQQk"
  #看板娘 
 live2d:
-  enable: true    # 是否启用看板娘
+  enable: false    # 是否启用看板娘
   #scriptFrom: local    # 默认
   pluginRootPath: live2dw/    # 插件在站点上的根目录(相对路径)
   pluginJsPath: lib/    # 脚本文件相对与插件根目录路径

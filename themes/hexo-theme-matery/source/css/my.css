@@ -1,4 +1,37 @@
 /* Here is your custom css styles. */
+body { 
+  background-color: #eaeaea; 
+  background: linear-gradient(60deg, rgba(224,255,125, 0.5) 5%, 
+  rgba(0, 228, 255, 0.35)) 0% 0% / cover;
+  background-attachment: fixed;
+  margin: 0; 
+  color: #34495e; 
+}
+/* 修改首页轮播的标题大小 */ 
+@media only screen and (max-width: 601px) {
+   .bg-cover .title { 
+     font-size: 2.5rem; 
+    } 
+  } /* 修改博客标题的字体大小 */ 
+  @media only screen and (max-width: 601px) {
+     header .brand-logo .logo-span { 
+       font-size: 1.5rem; } 
+      }
+  .hbe-input-container  .btn-decrypt{
+    display: inline-block;
+    vertical-align: top;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #3f90ff;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }    
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px

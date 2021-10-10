@@ -1,13 +1,13 @@
 ---
 title: Markdown使用
-top: true
+top: false
 cover: false
 toc: true
 mathjax: false
 abbrlink: e4e
 date: 2021-10-08 18:03:54
 author: wakenhong
-img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/rmarkdown-screenshot.png
+img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/image-20211008214832466.png
 coverImg: https://cdn.jsdelivr.net/gh/wakenhong/cdn/site/blog/medias/featureimages/23.jpg
 password:
 summary: 利用Typro对Markdown一次练习，熟悉以后写一些笔记和记录

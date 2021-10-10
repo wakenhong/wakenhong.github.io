@@ -145,7 +145,7 @@ mark {
 }
 
 .text-color {
-    color: #0f9d58 !important;
+    color: #ef7060 !important;
 }
 
 .white-color {
@@ -157,7 +157,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background: linear-gradient(to right, #ef7060 0%, #dd3434 100%);
     opacity: 0.8;
 }
 
@@ -434,7 +434,7 @@ header .go-back i {
 }
 
 #recommend-sections {
-    /*margin-top: -30px;*/
+    /*margin-top: -30px;*/.text-color
     /*padding-top: 30px;*/
 }
 
