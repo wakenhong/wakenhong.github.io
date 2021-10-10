@@ -298,5 +298,5 @@ git status
 # 修改上面取消追踪的文件 再使用命令查看 此文件是否被git追踪
 ```
 
-![image.png](https://cdn.jsdelivr.net/gh/wakenhong/cdn/site/blog/imgs/1601822019290-506a4920-a79e-482b-9bc8-7db0f858b51e.png)
+
 
