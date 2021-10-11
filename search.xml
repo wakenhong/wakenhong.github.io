@@ -219,6 +219,7 @@ $ <span class="token function">git</span> config <span class="token punctuation"
 $ <span class="token function">git</span> config <span class="token punctuation">[</span>--global<span class="token punctuation">]</span> user.email <span class="token string">"[email address]"</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<hr>
 <h2 id="2-命令及说明"><a href="#2-命令及说明" class="headerlink" title="2.命令及说明"></a>2.命令及说明</h2><h3 id="1-远程拉取分支到本地"><a href="#1-远程拉取分支到本地" class="headerlink" title="1.远程拉取分支到本地"></a>1.远程拉取分支到本地</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git checkout <span class="token punctuation">-</span>b 本地分支名 origin/远程分支名
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="2-查看本地分支"><a href="#2-查看本地分支" class="headerlink" title="2.查看本地分支"></a>2.查看本地分支</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git branch
@@ -323,55 +324,89 @@ git pull
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="20-本地分支覆盖远程分支（慎用）"><a href="#20-本地分支覆盖远程分支（慎用）" class="headerlink" title="20.本地分支覆盖远程分支（慎用）"></a>20.本地分支覆盖远程分支（慎用）</h3><pre class="line-numbers language-yaml"><code class="language-yaml">git push origin 分支名 <span class="token punctuation">-</span><span class="token punctuation">-</span>force       (远程分支名)
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="21-git取消对文件夹的追踪"><a href="#21-git取消对文件夹的追踪" class="headerlink" title="21.git取消对文件夹的追踪"></a>21.git取消对文件夹的追踪</h3><ul>
-<li>列出需要取消跟踪的文件</li>
-</ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 需要取消追踪的文件是target目录</span>
-<span class="token function">git</span> <span class="token function">rm</span> -r -n --cached ./mavenparent/maven-admin/target/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="3-gitignore配置规则"><a href="#3-gitignore配置规则" class="headerlink" title="3.gitignore配置规则"></a>3.gitignore配置规则</h2><p><img src="https://cdn.jsdelivr.net/gh/wakenhong/cdn/image/2021/image-20211011110107993.png" alt="image-20211011110107993"></p>
+<p>通常，在使用Git的项目上工作时，您会希望排除将特定文件或目录推送到远程存储库中的情况。</p>
+<p><code>.gitignore</code>文件指定Git应该忽略的未跟踪文件。</p>
+<h3 id="3-1应忽略哪些文件？"><a href="#3-1应忽略哪些文件？" class="headerlink" title="3.1应忽略哪些文件？"></a>3.1应忽略哪些文件？</h3><p>被忽略的文件通常是特定于平台的文件或从构建系统自动创建的文件。一些常见的例子包括：</p>
 <ul>
-<li>去除缓存不想要跟踪的文件</li>
+<li>运行时文件，例如日志，锁定，缓存或临时文件。</li>
+<li>具有敏感信息的文件，例如密码或API密钥。</li>
+<li>已编译的代码，例如<code>.class</code>或<code>.o</code>。</li>
+<li>依赖目录，例如<code>/vendor</code>或<code>/node_modules</code>。</li>
+<li>建立目录，例如<code>/public</code>，<code>/out</code>或<code>/dist</code>。</li>
+<li>系统文件，例如<code>.DS_Store</code>或<code>Thumbs.db</code></li>
+<li>IDE或<a href="https://www.myfreax.com/how-to-install-visual-studio-code-on-ubuntu-18-04/">文本编辑器</a>配置文件。</li>
 </ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">rm</span> -r --cached ./mavenparent/maven-admin/target/
+<h3 id="3-2-gitignore模式"><a href="#3-2-gitignore模式" class="headerlink" title="3.2.gitignore模式"></a>3.2<code>.gitignore</code>模式</h3><p><code>.gitignore</code>文件是纯文本文件，其中每行包含一个模式，供文件或目录忽略。</p>
+<p><code>.gitignore</code>使用<a href="http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm"> globbing pattern </a>来匹配带通配符的文件名。如果文件或目录包含通配符模式，则可以使用单个反斜杠（<code>\</code>）来转义字符。</p>
+<h3 id="3-3-评论"><a href="#3-3-评论" class="headerlink" title="3.3.评论"></a>3.3.评论</h3><p>以井号（<code>#</code>）开头的行是注释，将被忽略。空行可以用来提高文件的可读性，并可以对相关的模式行进行分组。</p>
+<h3 id="3-4-斜线"><a href="#3-4-斜线" class="headerlink" title="3.4.斜线"></a>3.4.斜线</h3><p>斜杠符号（<code>/</code>）表示目录分隔符。模式开头的斜线相对于<code>.gitignore</code>所在的目录。</p>
+<p>如果模式以斜杠开头，则仅在存储库根目录中匹配文件和目录。</p>
+<p>如果模式不是以斜杠开头，则它将匹配任何目录或子目录中的文件和目录。</p>
+<p>如果模式以斜杠结尾，则仅匹配目录。当目录被忽略时，其所有文件和子目录也将被忽略。</p>
+<h3 id="3-5-文学文件名"><a href="#3-5-文学文件名" class="headerlink" title="3.5.文学文件名"></a>3.5.文学文件名</h3><p>最直接的模式是没有任何特殊字符的文字文件名。</p>
+<p>样式 示例匹配    <code>/access.log</code>  <code>access.log</code>   <code>access.log</code>  <code>access.log</code><br><code>logs/access.log</code><br><code>var/logs/access.log</code>   <code>build/</code>  <code>build</code></p>
+<h3 id="3-6-通配符"><a href="#3-6-通配符" class="headerlink" title="3.6.通配符"></a>3.6.通配符</h3><p><strong><code>\*</code></strong> -星号符号匹配零个或多个字符。</p>
+<p>样式 示例匹配    </p>
+<pre><code>*.log`  `error.log`
+`logs/debug.log`
+`build/logs/error.log
+</code></pre>
+<p><strong><code>\**</code></strong> -两个相邻的星号符号匹配任何文件或零个或多个目录。当后跟斜杠（<code>/</code>）时，它仅与目录匹配。</p>
+<p>样式 示例匹配    <code>logs/**</code> 在<code>logs</code>目录中。   <code>**/build</code>  <code>var/build</code><br><code>pub/build</code><br><code>build</code>   <code>foo/**/bar</code> ​​ <code>foo/bar</code><br><code>foo/a/bar</code><br><code>foo/a/b/c/bar</code></p>
+<p><strong><code>?</code></strong> -问号与任何单个字符匹配。</p>
+<p>样式 示例匹配    <code>access?.log</code>  <code>access0.log</code><br><code>access1.log</code><br><code>accessA.log</code>   <code>foo??</code>  <code>fooab</code><br><code>foo23</code><br><code>foo0s</code></p>
+<h3 id="3-7-方括号"><a href="#3-7-方括号" class="headerlink" title="3.7.方括号"></a>3.7.方括号</h3><p><strong><code>[...]</code></strong> -匹配方括号中包含的任何字符。当两个字符之间用连字符<code>-</code>隔开时，表示一个字符范围。该范围包括这两个字符之间的所有字符。范围可以是字母或数字。</p>
+<p>如果<code>[</code>之后的第一个字符是感叹号（<code>!</code>），则该模式匹配除指定集合中的字符以外的任何字符。</p>
+<p>样式 示例匹配    <code>*.[oa]</code>  <code>file.o</code><br><code>file.a</code>   <code>*.[!oa]</code>  <code>file.s</code><br><code>file.1</code><br><code>file.0</code>   <code>access.[0-2].log</code>  <code>access.0.log</code><br><code>access.1.log</code><br><code>access.2.log</code>   <code>file.[a-c].out</code>  <code>file.a.out</code><br><code>file.b.out</code><br><code>file.c.out</code>   <code>file.[a-cx-z].out</code>  <code>file.a.out</code><br><code>file.b.out</code><br><code>file.c.out</code><br><code>file.x.out</code><br><code>file.y.out</code><br><code>file.z.out</code>   <code>access.[!0-2].log</code>  <code>access.3.log</code><br><code>access.4.log</code><br><code>access.Q.log</code></p>
+<h3 id="3-8-反模式"><a href="#3-8-反模式" class="headerlink" title="3.8.反模式"></a>3.8.反模式</h3><p>以感叹号（<code>!</code>）开头的模式将否定（重新包括）先前模式忽略的任何文件。此规则的例外是，如果排除了其父目录，则重新包含文件。</p>
+<p>样式 示例匹配    <code>*.log</code><br><code>!error.log</code>  <code>error.log</code>或<code>logs/error.log</code>将不会被忽略</p>
+<h3 id="3-9-gitignore范例"><a href="#3-9-gitignore范例" class="headerlink" title="3.9..gitignore范例"></a>3.9.<code>.gitignore</code>范例</h3><p>以下是<code>.gitignore</code>文件的外观示例：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Ignore the node_modules directory</span>
+node_modules/
+
+<span class="token comment" spellcheck="true"># Ignore Logs</span>
+logs
+*.log
+
+<span class="token comment" spellcheck="true"># Ignore the build directory</span>
+/dist
+
+<span class="token comment" spellcheck="true"># The file containing environment variables </span>
+.env
+
+<span class="token comment" spellcheck="true"># Ignore IDE specific files</span>
+.idea/
+.vscode/
+*.sw*
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-10本地-gitignore"><a href="#3-10本地-gitignore" class="headerlink" title="3.10本地.gitignore"></a>3.10本地<code>.gitignore</code></h3><p>本地<code>.gitignore</code>文件通常放置在存储库的根目录中。但是，您可以在存储库的不同子目录中创建多个<code>.gitignore</code>文件。 <code>.gitignore</code>文件中的模式相对于文件所在目录匹配。</p>
+<p>在子目录中的文件中定义的模式优先于较高级目录中的模式。</p>
+<p>本地<code>.gitignore</code>文件与其他开发人员共享，并且应包含对存储库的所有其他用户有用的模式。</p>
+<h3 id="3-11-全局-gitignore"><a href="#3-11-全局-gitignore" class="headerlink" title="3.11.全局.gitignore"></a>3.11.全局<code>.gitignore</code></h3><p>Git还允许您创建全局<code>.gitignore</code>文件，您可以在其中为本地系统上的每个Git存储库定义忽略规则。</p>
+<p>该文件可以命名为任意名称，并存储在任何位置。保留此文件的最常见位置是主目录。您必须手动<a href="https://www.myfreax.com/create-a-file-in-linux/">创建文件</a>并将Git配置为使用它。</p>
+<p>例如，要将<code>~/.gitignore_global</code>设置为全局Git忽略文件，您可以执行以下操作：</p>
+<p>创建文件：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">touch</span> ~/.gitignore_global
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>在本地仓库的根目录下新建.gitignore 文件(若有这个文件那么进行编辑即可)，添加你希望忽略的文件/目录</li>
-</ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 忽略当前目录下mavenparent目录下maven-admin目录下的target目录文件</span>
-/mavenparent/maven-admin/target/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>提交文件 (会出现确认需要提交哪些文件 记得==将需要取消的文件前面的#去掉==)</li>
-</ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> commit
-
-<span class="token comment" spellcheck="true"># 提交的文件 取消deleted前面的 “#”</span>
-deleted:    mavenparent/maven-admin/target/classes/com/leiwu/architecture/maven/admin/AdminBase.class
-deleted:    mavenparent/maven-admin/target/maven-admin.war
-deleted:    mavenparent/maven-admin/target/maven-admin/META-INF/MANIFEST.MF
-
-<span class="token comment" spellcheck="true"># 保存提交的文件</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>将修改的 .ignore文件 commit上去</li>
-</ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> add .gitignore
-<span class="token function">git</span> commit
-
-<span class="token comment" spellcheck="true"># 修改提交的文件 ---- 去除前面的 # 号</span>
-On branch master
-Changes to be committed:
-modified:   .gitignore
-
-<span class="token comment" spellcheck="true"># 保存提交的文件</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>使用命令查看当前工作区是否有未提交的文件</li>
-</ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> status
-
-<span class="token comment" spellcheck="true"># 修改上面取消追踪的文件 再使用命令查看 此文件是否被git追踪</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>将文件添加到Git配置：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> config --global core.excludesfile ~/.gitignore_global
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>使用文本编辑器打开文件并向其中添加规则。</p>
+<p>全局规则对于忽略您永远不想提交的特定文件（例如带有敏感信息或已编译的可执行文件的文件）特别有用。</p>
+<h3 id="3-12-忽略以前提交的文件"><a href="#3-12-忽略以前提交的文件" class="headerlink" title="3.12.忽略以前提交的文件"></a>3.12.忽略以前提交的文件</h3><p>您的工作副本中的文件可以被追踪，也可以未被追踪。</p>
+<p>要忽略先前提交的文件，您需要取消暂存并从索引中删除该文件，然后在<code>.gitignore</code>中为该文件添加规则：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">rm</span> --cached filename
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>--cached</code>选项告诉git不要从工作树中删除文件，而只是从索引中删除它。</p>
+<p>要递归删除目录，请使用<code>-r</code>选项：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">rm</span> --cached filename
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果要从索引和本地文件系统中删除文件，请忽略<code>--cached</code>选项。</p>
+<p>以递归方式删除文件时，使用<code>-n</code>选项将执行“空运行”并显示要删除的文件：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">rm</span> -r -n directory
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>工具类</category>
