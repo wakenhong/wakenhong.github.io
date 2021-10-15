@@ -1,12 +1,13 @@
 ---
 title: {{ title }}
 date: {{ date }}
+author: 潇潇暮雨
+toc: true
+top: 
+cover: false
 categories: 
-tags:
-author: 
+tags: 
 img: 
-cover: false 
-toc: true 
 summary: 
 keywords: 
 ---

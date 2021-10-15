@@ -2,13 +2,14 @@
 title: 升级vue-cli到@vue/cli-4.5 config.js和webpack配置
 cover: false
 toc: true
-date: 2021-10-13 12:01:43
 categories: 前端
 tags: vue webpack @vue/cli
 author: 潇潇暮雨
+keywords: vue webpack @vue/cli
+abbrlink: '1316'
+date: 2021-10-13 12:01:43
 img:
 summary:
-keywords: vue webpack @vue/cli
 ---
 
 # 一、安装，创建项目

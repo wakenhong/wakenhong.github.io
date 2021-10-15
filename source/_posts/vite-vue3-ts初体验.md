@@ -2,10 +2,13 @@
 layout: 前端
 title: vite vue3 ts初体验
 date: 2021-10-11 22:29:54 
+top: true
+cover: false
+toc: true
 categories: 前端
 tags: vite vue3 ts
 author: 潇潇暮雨
-img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/dac005da1fb44643a0895c0e7de946e9~tplv-k3u1fbpfcp-watermark.awebp
+img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/202110151601465.png
 summary: 体验vite + vue3 + ts搭建项目的全过程
 keywords: vite vue3 ts
 ---

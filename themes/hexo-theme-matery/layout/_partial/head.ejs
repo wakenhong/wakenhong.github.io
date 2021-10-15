@@ -69,6 +69,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title><%= pageTitle %></title>
     <link rel="icon" type="<%= iconType %>" href="<%- theme.favicon %>">
+    <link rel="stylesheet" type="text/css" href="<%- theme.jsDelivr.url %><%- url_for(theme.libs.css.fontAwesome) %>">
     <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.fontAwesome %>">
     <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.materialize %>">
     <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.aos %>">
@@ -76,7 +77,7 @@
     <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.lightgallery %>">
     <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.matery %>">
     <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.my %>">
-    <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.css.prism) %>"></script>
+    <link rel="stylesheet" type="text/css" href="<%- theme.jsDelivr.url %><%- url_for(theme.libs.css.prism) %>">
     <style type="text/css">
         <% if (!theme.code.break) { %>
         code[class*="language-"], pre[class*="language-"] {

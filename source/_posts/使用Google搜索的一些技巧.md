@@ -1,3 +1,18 @@
+---
+title: Google搜索的一些技巧
+cover: false
+toc: true
+abbrlink: '0'
+date: 2021-10-13 21:57:59
+categories: 前端
+tags: 
+  - 工具
+  - 阅读
+author: 潇潇暮雨
+img: https://cdn.jsdelivr.net/gh/wakenhong/cdn/images/2021/202110151557647.png
+summary: 在开发的过程中，免不了要去搜索一些内容，经常使用Google搜索，如果熟悉一些技巧能让我们更快找到所需的内容
+keywords: Google搜索
+---
 # 使用Google搜索的一些技巧
 
 本文转自： https://www.cnblogs.com/shenjp/p/14463433.html
