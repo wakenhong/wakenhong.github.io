@@ -357,7 +357,7 @@ cnzz_siteid:
 # 使用到的前端库，可按需替换成对应的CDN地址，如果下面未指定具体的版本号，使用最新的版本即可.
 libs:
   css:
-    fontAwesome: https://cdn.jsdelivr.net/gh/wakenhong/cdn/site/blog/libs/awesome/css/all.css# V4.7.0
+    fontAwesome: https://cdn.staticfile.org/font-awesomet/4.7.0/css/fon-awesome.min.css # V4.7.0
     materialize: https://cdn.staticfile.org/materialize/1.0.0-rc.2/css/materialize.min.css # 1.0.0
     aos: https://cdn.staticfile.org/aos/2.3.4/aos.css
     animate: https://cdn.staticfile.org/animate.css/3.7.2/animate.min.css # V3.5.1
